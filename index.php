@@ -7,7 +7,7 @@ if ( file_exists('config.php') )
     require_once('config.php');
 }
 
-require_once(DIR_SystemPath. 'startup.php');
+require_once(DIR_System. 'startup.php');
 
 
 

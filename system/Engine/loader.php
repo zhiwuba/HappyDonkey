@@ -27,8 +27,36 @@ final class Loader
         $this->registry->set($key, $value);
     }
 
-    
+    public function library($library)
+    {
+        $file=DIR_System . 'library/' . $library . '.php';
+        if ( file_exists($file) )
+        {
+            include_once($file);
+        }
+        else
+        {
+            trigger_error("Error: Could not load library " . $library . '!' );
+            exit();
+        }
+    }
 
+    public function model($model)
+    {
+        $file=DIR_Gallery . 'model/' . $model . '.php';
+        $class='Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
+
+        if ( file_exists($file) )
+        {
+            include_once($file);
+            $this->registry->set('model_' . str_replace('/','_', $model), new $class($this->registry) );
+        }
+        else
+        {
+            trigger_error("Error: Could not load model " . $model . '!');
+            exit();
+        }
+    }
 
 }
 

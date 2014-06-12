@@ -27,7 +27,22 @@ final class HD_MySql
     
     public function query($sql)
     {
-        return $this->mysqli->query($sql);
+        $result = $this->mysqli->query($sql);
+        if  ($result )
+        {
+            $data=array();
+            while ( $row=$result->fetch_assoc() )
+            {
+                $data[]=$row;
+            }
+            $result->free();
+            return $data;
+        }
+        else
+        {
+            trigger_error('Error: ' . mysql_error($this->linkl));
+            exit();
+        }
     }
 
     public function get_last_id()

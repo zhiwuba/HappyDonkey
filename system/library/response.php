@@ -81,11 +81,11 @@ class Response
             }
             else
             {
-                $output=$this->$this->output;
+                $output=$this->output;
             }
 
-            if ( !headers_send() )
-            {  //why???
+            if ( !headers_sent() )  //sent: send的过去分词
+            {
                 foreach( $this->headers as $header  )
                 {
                     header($header, true);
