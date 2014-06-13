@@ -25,8 +25,6 @@ $registry->set('load', $loader);
 $db=new HD_MySql(DB_HostName,DB_UserName,DB_Password,DB_Name);
 $registry->set('db', $db);
 
-
-
 //Request
 $request=new Request();
 $registry->set('request', $request);
@@ -35,9 +33,14 @@ $registry->set('request', $request);
 $response=new Response();
 $registry->set('response', $response);
 
-
+//Session
 $session=new Session();
 $registry->set('session', $session);
+
+//Constance object.
+$registry->set('user', new User($registry));
+
+
 
 //Front Controller
 $controller=new Front($registry);

@@ -3,31 +3,28 @@
 
 final class HD_MySql
 {
-    private $mysqli;
+    private $link;
 
     public function __construct($hostname,$username,$password,$database)
     {
-        $this->mysqli=new mysqli($hostname,$username,$password,$database);
+        $this->link=new mysqli($hostname,$username,$password,$database);
         if (mysqli_connect_errno() )
         {
             trigger_error('Error: could not make a database link('.  mysqli_connect_errno().')'.  mysqli_connect_error() );
         }
         
-        $this->mysqli->query("SET NAMES 'utf8'");
-        $this->mysqli->query("SET CHARACTER utf8");
-        $this->mysqli->query("SET SET CHARACTER_SET_CONNECTION=utf8");
-        $this->mysqli->query("SET SQL_MODE = ''");
-        
+        $this->link->set_charset("utf8");
+        $this->link->query("SET SQL_MODE = ''");
     }
     
     public function __destruct() 
     {
-        $this->mysqli->close();
+        $this->link->close();
     }
     
     public function query($sql)
     {
-        $result = $this->mysqli->query($sql);
+        $result = $this->link->query($sql);
         if  ($result )
         {
             $data=array();
@@ -40,14 +37,24 @@ final class HD_MySql
         }
         else
         {
-            trigger_error('Error: ' . mysql_error($this->linkl));
+            trigger_error('Error: ' . mysql_error($this->link));
             exit();
         }
     }
 
+    public function escape($value)
+    {
+        return $this->link->real_escape_string($value);
+    }
+
+    public function  count_affected()
+    {
+        return $this->link->affected_rows;
+    }
+
     public function get_last_id()
     {
-        return $this->mysqli->insert_id;
+        return $this->link->insert_id;
     }
 
 

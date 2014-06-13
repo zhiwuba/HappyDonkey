@@ -18,7 +18,7 @@ require_once(DIR_System . "engine/registry.php");
 require_once(DIR_System . "library/request.php");
 require_once(DIR_System . "library/response.php");
 require_once(DIR_System . "library/session.php");
-
+require_once(DIR_System . "library/user.php");
 
 
 ?>
