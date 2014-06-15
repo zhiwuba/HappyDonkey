@@ -35,20 +35,29 @@ class User
         }
     }
 
-    public function login($username, $password, $override=false)
+    public function login($email, $password, $override=false)
     {
         if ( $override )
         {
-            $user_query=$this->db->query("select ");
+            $command="SELECT *  FROM user WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) . "' AND status='1'" ;
+            $user_query=$this->db->query($command);
         }
         else
         {
-            $user_query=$this->db->query();
+            //三次SHA1 加密
+            $command="SELECT * FROM user WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) .
+                "' AND (password=SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape(utf8_strtolower($password)) .
+                "' ))))) OR password='" .$this->db->escape(md5($password)) . "' AND status='1'" ;
+
+            $user_query=$this->db->query($command);
         }
 
         if ( count($user_query) )
         {
-            $this->session->data[""]=$user_query[];
+            $this->session->data["user_id"]=$user_query["user_id"];
+            $this->user_id=$user_query["user_id"];
+            $this->user_name=$user_query["user_name"];
+            $this->email= $user_query["email"];
             return true;
         }
         else
@@ -69,16 +78,16 @@ class User
 
     public function is_logged()
     {
-
+        return $this->user_id;
     }
 
     public function get_id()
     {
-
+        return $this->user_id;
     }
 
     public function get_username()
     {
-
+        return $this->user_name;
     }
 }

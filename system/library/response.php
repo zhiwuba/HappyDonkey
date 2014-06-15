@@ -20,7 +20,7 @@ class Response
     public function redirect($url)
     {
         header('Location: ' . $url);
-        exit;  //???
+        exit;
     }
 
     public function set_compression($level)

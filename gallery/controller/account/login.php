@@ -10,7 +10,9 @@ class ControllerAccountLogin extends  Controller
 {
     public function  index()
     {
+        $this->template="account/login.php";
 
+        $this->response->set_output( $this->render() );
     }
 
 
