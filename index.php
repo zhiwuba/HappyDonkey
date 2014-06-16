@@ -21,6 +21,10 @@ $registry->set('load', $loader);
 //Config
 //$db=new
 
+//url
+$url=new Url(HTTP_SERVER, HTTPS_SERVER);
+$registry->set('user', $url );
+
 //DB
 $db=new HD_MySql(DB_HostName,DB_UserName,DB_Password,DB_Name);
 $registry->set('db', $db);

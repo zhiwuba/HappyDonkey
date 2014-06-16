@@ -7,9 +7,11 @@
  */
 class ModelBrowsePaint
 {
-    public function get_paint()
+    public function get_paint($paint_id)
     {
+        $query_result=$this->db->query("SELECT * FROM hd_paints WHERE paint_id='" .$paint_id . "'");
 
+        return $query_result;
     }
 
     //赞、匾
@@ -27,13 +29,23 @@ class ModelBrowsePaint
     //获取
     public function get_appraise($paint_id)
     {
+        $query_result=$this->db->query("SELECT * FROM hd_marks WHERE paint_id='" .  $paint_id . "'");
 
+        return $query_result;
     }
 
     //获取
     public function  get_comment($paint_id, $begin, $count)
     {
-
+        $query_result=$this->db->query("SELECT * FROM hd_comments WHERE paint_id='" . $paint_id . "'");
+        if ( count($query_result)>$begin )
+        {
+            return array_slice($query_result, $begin, $count);
+        }
+        else
+        {
+            return false;
+        }
     }
 
     //收藏夹
@@ -42,7 +54,9 @@ class ModelBrowsePaint
 
     }
 
+    public function  get_favicon($user_id)
+    {
 
-
+    }
 
 }

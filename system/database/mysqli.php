@@ -26,14 +26,21 @@ final class HD_MySql
     {
         $result = $this->link->query($sql);
         if  ($result )
-        {
-            $data=array();
-            while ( $row=$result->fetch_assoc() )
+        {   //query
+            if ( isset($result->num_rows) )
             {
-                $data[]=$row;
+                $data=array();
+                while ( $row=$result->fetch_assoc() )
+                {
+                    $data[]=$row;
+                }
+                $result->free();
+                return $data;
             }
-            $result->free();
-            return $data;
+            else
+            {   //update insert  delete.
+                return true;
+            }
         }
         else
         {

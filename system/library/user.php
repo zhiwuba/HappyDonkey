@@ -39,13 +39,13 @@ class User
     {
         if ( $override )
         {
-            $command="SELECT *  FROM user WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) . "' AND status='1'" ;
+            $command="SELECT *  FROM hd_users WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) . "' AND status='1'" ;
             $user_query=$this->db->query($command);
         }
         else
         {
             //三次SHA1 加密
-            $command="SELECT * FROM user WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) .
+            $command="SELECT * FROM hd_users WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) .
                 "' AND (password=SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape(utf8_strtolower($password)) .
                 "' ))))) OR password='" .$this->db->escape(md5($password)) . "' AND status='1'" ;
 
@@ -68,7 +68,10 @@ class User
 
     public function logout()
     {
-
+        unset($this->session->data['user_id']);
+        $this->user_id='';
+        $this->user_name='';
+        $this->email='';
     }
 
     public function has_permission($key, $value)
@@ -90,4 +93,10 @@ class User
     {
         return $this->user_name;
     }
+
+    public function  get_email()
+    {
+        return $this->email;
+    }
+
 }
