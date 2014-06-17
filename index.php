@@ -23,7 +23,7 @@ $registry->set('load', $loader);
 
 //url
 $url=new Url(HTTP_SERVER, HTTPS_SERVER);
-$registry->set('user', $url );
+$registry->set('url', $url );
 
 //DB
 $db=new HD_MySql(DB_HostName,DB_UserName,DB_Password,DB_Name);
@@ -40,6 +40,10 @@ $registry->set('response', $response);
 //Session
 $session=new Session();
 $registry->set('session', $session);
+
+
+//document
+$registry->set('document', new Document());
 
 //Constance object.
 $registry->set('user', new User($registry));

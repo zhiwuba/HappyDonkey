@@ -46,10 +46,10 @@ class Document
 
     public function add_style($href, $rel='stylesheet', $media='screen')
     {
-        $this->styles[md5($href)]=array('href'=>$href, 'rel'=>$rel, 'media'=>$media);
+        $this->styles[md5($href)]=array('href'=>$href , 'rel'=>$rel, 'media'=>$media);
     }
 
-    public function get_style()
+    public function get_styles()
     {
         return $this->styles;
     }
@@ -59,7 +59,7 @@ class Document
         $this->scripts[md5($script)]=$script;
     }
 
-    public function get_script()
+    public function get_scripts()
     {
         return $this->scripts;
     }
