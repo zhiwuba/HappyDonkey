@@ -2,9 +2,27 @@
 
 
 <div class="container">
-    <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
+    <div class="gallery">
+        <div id="welcome">
+            <h1>Welcome to my website.</h1>
+        </div>
+        <div  id="paint_list">
+            <ul >
+            <?php foreach( $paint_list as $paint ){ ?>
+                <li>
+                    <div class="paint">
+                        <img src="<?php echo $paint; ?>" >
+                    </div>
+                </li>
+            <?php } ?>
+            </ul>
+        </div>
     </div>
+
+    <div >
+
+    </div>
+
 </div>
 
 

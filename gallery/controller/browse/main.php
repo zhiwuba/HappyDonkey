@@ -12,6 +12,11 @@ class ControllerBrowseMain extends Controller
     {
         $this->template="browse/main.php";
 
+        $this->data["paint_list"]=array();
+        for ($i=1; $i<=9 ;$i++ )
+        {
+            $this->data["paint_list"][]="/happydonkey/static/image/$i.jpg";
+        }
 
         $this->children=array("common/header",
                                             "common/footer");

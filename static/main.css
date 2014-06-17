@@ -3,9 +3,18 @@ body
     padding-top: 50px;
 }
 
-.starter-template
+.gallery
 {
     padding: 40px 50px;
     text-align: center;
 }
 
+#welcome
+{
+    text-align: center;
+}
+
+.gallery ul
+{
+    list-style:none;
+}
