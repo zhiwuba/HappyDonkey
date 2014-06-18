@@ -14,10 +14,7 @@ class ControllerBrowsePaint  extends Controller
 
 
         $this->response->set_output($this->render());
-
     }
-
-
 
 }
 

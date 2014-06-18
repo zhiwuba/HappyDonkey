@@ -11,6 +11,7 @@ class User
 {
     private $user_id;
     private $user_name;
+    private $user_ip;
     private $email;
 
     public function  __construct($registry)
@@ -27,6 +28,7 @@ class User
                 $this->user_id=$user_query["user_id"];
                 $this->user_name=$user_query["user_name"];
                 $this->email=$user_query["email"];
+                $this->user_ip=$this->request->server['REMOTE_ADDR'];
             }
             else
             {
@@ -58,6 +60,7 @@ class User
             $this->user_id=$user_query["user_id"];
             $this->user_name=$user_query["user_name"];
             $this->email= $user_query["email"];
+            $this->user_ip=$this->request->server['REMOTE_ADDR'];
             return true;
         }
         else
@@ -72,6 +75,7 @@ class User
         $this->user_id='';
         $this->user_name='';
         $this->email='';
+        $this->user_ip='';
     }
 
     public function has_permission($key, $value)
@@ -97,6 +101,11 @@ class User
     public function  get_email()
     {
         return $this->email;
+    }
+
+    public function  get_last_ip()
+    {
+        return $this->user_ip;
     }
 
 }

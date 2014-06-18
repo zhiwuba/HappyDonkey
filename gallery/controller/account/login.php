@@ -10,8 +10,6 @@ class ControllerAccountLogin extends  Controller
 {
     public function  index()
     {
-        $this->template="account/account.php";
-
         if ($this->request->server['REQUEST_METHOD']=='POST')
         {
             $info=array();
@@ -45,10 +43,6 @@ class ControllerAccountLogin extends  Controller
             }
 
             return $this->response->set_output(json_encode($info));
-        }
-        else
-        {
-            return $this->response->set_output( $this->render() );
         }
     }
 

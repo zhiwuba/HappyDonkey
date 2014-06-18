@@ -24,14 +24,14 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">ProjectName</a>
+                <a class="navbar-brand" href="#">GIF库</a>
             </div>
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#">排行榜</a></li>
+                    <li><a href="#">我的收藏</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav pull-right">
@@ -56,6 +56,7 @@
                     <h4 id="login_label" class="modal-title">登陆</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-danger" style="padding: 10px; margin-bottom: 10px; display: none;">登陆失败</div>
                     <form class="form-signin" role="form">
                         <input type="text" class="form-control" placeholder="邮箱" required autofocus>
                         <input type="password" class="form-control" placeholder="密码" required>
@@ -76,7 +77,7 @@
                     <h4 id="register_label" class="modal-title">注册</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-danger" style="height: 10px;">注册失败</div>
+                    <div class="alert alert-danger" style="padding: 10px; margin-bottom: 10px; display: none;">注册失败</div>
                     <form class="form-register" role="form">
                         <input type="text" class="form-control" placeholder="邮箱"  style="margin-bottom:10px;" required autofocus>
                         <input type="text" class="form-control" placeholder="用户名" style="margin-bottom: 10px;" required>
