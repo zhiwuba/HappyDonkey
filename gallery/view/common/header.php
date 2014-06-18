@@ -35,8 +35,8 @@
                 </ul>
 
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href=""><i class="glyphicon glyphicon-registration-mark"></i> 注册</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-log-in"></i> 登陆</a></li>
+                    <li><a data-toggle="modal" data-target="#register_modal"><i class="glyphicon glyphicon-registration-mark"></i> 注册</a></li>
+                    <li><a data-toggle="modal" data-target="#login_modal"><i class="glyphicon glyphicon-log-in"></i> 登陆</a></li>
                 </ul>
 
                 <form class="navbar-form navbar-right" role="search" action="#">
@@ -49,6 +49,44 @@
         </div>
     </div>
 
+    <div id="login_modal" class="modal fade" aria-hidden="true" aria-labelledby="login_label" role="dialog" tabindex="-1">
+        <div class="modal-dialog" id="login_dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="login_label" class="modal-title">登陆</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-signin" role="form">
+                        <input type="text" class="form-control" placeholder="邮箱" required autofocus>
+                        <input type="password" class="form-control" placeholder="密码" required>
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me"> 记住密码
+                        </label>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="register_modal" class="modal fade" aria-hidden="true" aria-labelledby="register_label" role="dialog" tabindex="-1">
+        <div class="modal-dialog" id="register_dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="register_label" class="modal-title">注册</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" style="height: 10px;">注册失败</div>
+                    <form class="form-register" role="form">
+                        <input type="text" class="form-control" placeholder="邮箱"  style="margin-bottom:10px;" required autofocus>
+                        <input type="text" class="form-control" placeholder="用户名" style="margin-bottom: 10px;" required>
+                        <input type="password" class="form-control" placeholder="密码" style="margin-bottom: 10px;" required>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 10px;">注册</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!--/body>
 </html-->

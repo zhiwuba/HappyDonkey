@@ -41,6 +41,7 @@ class ControllerCommonHeader extends Controller
         $this->document->add_script(HTTP_SERVER . "static/jquery-2.1.1.js");
         $this->document->add_script(HTTP_SERVER . "static/bootstrap-3.0.3/js/bootstrap.js");
         $this->document->add_style(HTTP_SERVER . "static/main.css");
+        $this->document->add_script(HTTP_SERVER . "static/main.js");
 
     }
 

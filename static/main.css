@@ -1,20 +1,190 @@
 body
 {
     padding-top: 50px;
+    background-color: #EEE;
+    font: 12px/18px arial,STHeiti,'Microsoft YaHei','宋体';
 }
 
-.gallery
+a
+{   /* 超链接无下划线 */
+    text-decoration: none;
+    color: #227DC5;
+}
+
+#login_dialog
 {
-    padding: 40px 50px;
+    width: 300px;
+    height: 300px;
+    top: 20%;
+}
+
+#register_dialog
+{
+    width: 400px;
+    height: 400px;
+    top: 20%;
+}
+
+#hd_main
+{
     text-align: center;
 }
+
+#gallery
+{
+    clear: both;
+    display: block;
+    content: "  ";
+    width: 860px;
+    padding: 40px 0px 10px;
+    text-align: center;
+}
+
+#gallery:after
+{
+    content:"  ";
+    display:block;
+    clear:both;
+}
+
 
 #welcome
 {
     text-align: center;
 }
 
-.gallery ul
+#paint_suggest
 {
-    list-style:none;
+    float: right;
+    width: 330px ;
+    overflow: hidden;
 }
+
+#paint_list
+{
+    float: left;
+    width: 520px;
+    min-height: 100px ;
+}
+
+.div_center
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shadow-box
+{
+    display: block;
+    background-color: #FFF;
+    border: 1px solid #E1DFDF;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #CCC;
+    word-break: break-all;
+}
+
+.a-paint
+{
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.a-paint  .paint-header
+{
+
+}
+
+.a-paint .paint-content
+{
+
+}
+
+.a-paint .paint-info
+{
+    border-bottom: 1px solid #E1DFDF;
+    padding: 15px 10px 15px 15px;
+}
+
+.a-paint .paint-comment-list
+{
+    background-color: #f8f8f8;
+    padding: 10px 10px 15px 15px;
+}
+
+.a-comment
+{
+    display: block;
+    margin: 10px 0px 0px 10px;
+}
+
+.a-comment .avatar
+{
+    width: 30px;
+    height: 30px;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.a-comment .avatar .image
+{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+.a-comment .content
+{
+    text-align: left;
+    position: relative;
+    margin-left: 40px;
+    font-size: 12px;
+}
+
+.content .info
+{
+    margin: 0px 0px 0px 0px;
+}
+
+.content .info .user-name
+{
+    color: #666;
+    font-weight: bold;
+}
+.content .info .time
+{
+    color: #AAA;
+}
+.content .text
+{
+    color: #666;
+    display: block;
+}
+
+.paging
+{
+    text-align: center;
+}
+
+#today_popular
+{
+    margin-bottom: 20px;
+}
+#recommend_to_you
+{
+    margin-bottom: 20px;
+}
+#browse_history
+{
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
