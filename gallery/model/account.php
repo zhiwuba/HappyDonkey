@@ -1,6 +1,6 @@
 <?php
 
-class ModelAccountAccount extends  Model
+class ModelAccount extends  Model
 {
     public function  register($name, $email, $password)
     {
@@ -53,5 +53,19 @@ class ModelAccountAccount extends  Model
         }
         return false;
     }
+
+    public function  get_user_info($user_id)
+    {
+        $result=$this->db->query("SELECT username,avatar_thumb_path  FROM hd_users WHERE user_id=". $user_id );
+        if ( count($result)==1 )
+        {
+            return $result[0];
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }

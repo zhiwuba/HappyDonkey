@@ -5,7 +5,7 @@
  * Date: 14-6-15
  * Time: 下午6:53
  */
-class ModelBrowsePaint
+class ModelBrowsePaint extends  Model
 {
     //
     public function get_paint($paint_id)

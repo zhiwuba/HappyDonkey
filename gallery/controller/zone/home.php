@@ -10,18 +10,14 @@ class ControllerZoneHome extends  Controller
 {
     public function index()
     {
-        if ( $this->user->is_logged() )
-        {
-            $this->template="zone/home.php";
+        //TODO: please login first.
+        $this->template="zone/home.php";
 
-            $this->load->model("zone/home");
+        $this->load->model("zone/home");
 
-            $this->response->set_output($this->render());
-        }
-        else
-        {
+        $this->children=array("common/header","common/footer");
 
-        }
+        $this->response->set_output($this->render());
     }
 
 }

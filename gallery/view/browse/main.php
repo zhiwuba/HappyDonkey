@@ -40,29 +40,21 @@
                         <span>Paint信息</span>
                     </div>
                     <div class="paint-comment-list">
+
+                    <?php foreach($paint['other_comments'] as $comment){ ?>
                         <div class="a-comment">
-                            <a class="avatar" namecard="" href="">
-                                <img class="image" src="<?php echo HTTP_SERVER . "static/image/avatar.jpg"?>">
+                            <a class="avatar" namecard="<?php echo $comment['user_id']?>" href="<?php echo $comment['user_url'];?>">
+                                <img class="image" src="<?php echo HTTP_SERVER . $comment['user_avatar']?>">
                             </a>
                             <div class="content">
                                 <p class="info">
-                                    <a class="user-name" namecard="" href="">无名氏</a>
-                                    <span class="time">2014-06-18 09:39</span>
+                                    <a class="user-name" namecard="<?php echo $comment['user_id']?>" href="<?php echo $comment['user_url'];?>"><?php echo $comment['user_name'];?></a>
+                                    <span class="time"><?php echo $comment['date']?></span>
                                 </p>
-                                <span class="text">这图真漂亮</span>
+                                <span class="text"><?php echo $comment['content']; ?></span>
                             </div>
                         </div>
-
-                        <div class="a-comment">
-                            <a class="avatar" namecard="" href=""></a>
-                            <div class="content">
-                                <p class="info">
-                                    <a class="user-name" namecard="" href="">刘炳夏</a>
-                                    <span class="time">2014-06-18 09:39</span>
-                                </p>
-                                <span class="text">这图真漂亮</span>
-                            </div>
-                        </div>
+                    <?php } ?>
 
                     </div>
                 </div>
@@ -70,15 +62,13 @@
 
             <div class="paging">
                 <ul class="pagination">
-                    <li><a href="#">Previous</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">Next</a></li>
+                    <li class="<?php echo $previous['status']?>"><a href="<?php echo $previous['url'];?>" >上一页</a></li>
+
+                <?php foreach($pages as $page){ ?>
+                    <li class="<?php echo $page['status'];?>"><a href="<?php echo $page['url'];?>" ><?php echo $page['num'];?></a></li>
+                <?php } ?>
+
+                    <li class="<?php echo $next['status']?>"><a href="<?php echo $next['url']; ?>" >下一页</a></li>
                 </ul>
             </div>
         </div>

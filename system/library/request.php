@@ -30,8 +30,39 @@ class Request
         $this->server=$_SERVER;
     }
 
+    public function method()
+    {
+        return $this->server['REQUEST_METHOD'];
+    }
 
-    public function clean($data)
+    public function  get_args($key)
+    {
+        if ( $this->method()=='GET' )
+        {
+            if (isset($this->get[$key]))
+            {
+                return $this->get[$key];
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if( $this->method()=='POST' )
+        {
+            if (isset($this->post[$key]))
+            {
+                return $this->post[$key];
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+
+    private function clean($data)
     {
         if (is_array($data))
         {

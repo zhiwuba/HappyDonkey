@@ -32,7 +32,10 @@ class Url
 
         if ( $args )
         {
-            $url .= str_replace('&', '&amp', '&' . ltrim($args, '&') );
+            foreach( $args as $key=>$value )
+            {
+                $url .=( "&$key=" .ltrim($value) );
+            }
         }
 
         return $url;

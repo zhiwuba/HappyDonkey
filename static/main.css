@@ -1,3 +1,4 @@
+/********************Common*********************/
 body
 {
     padding-top: 50px;
@@ -11,6 +12,25 @@ a
     color: #227DC5;
 }
 
+.div_center
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shadow-box
+{
+    display: block;
+    background-color: #FFF;
+    border: 1px solid #E1DFDF;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #CCC;
+    word-break: break-all;
+}
+
+
+
+/**********************main.php***************************/
 #login_dialog
 {
     width: 300px;
@@ -47,7 +67,6 @@ a
     clear:both;
 }
 
-
 #welcome
 {
     text-align: center;
@@ -65,22 +84,6 @@ a
     float: left;
     width: 520px;
     min-height: 100px ;
-}
-
-.div_center
-{
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.shadow-box
-{
-    display: block;
-    background-color: #FFF;
-    border: 1px solid #E1DFDF;
-    border-radius: 2px;
-    box-shadow: 1px 1px 1px #CCC;
-    word-break: break-all;
 }
 
 .a-paint
@@ -183,8 +186,109 @@ a
 }
 
 
+/***************************home.php************************/
+
+#home_wrapper
+{
+    padding: 40px 0px 40px;
+    width: 760px;
+}
+
+#user_section
+{
+    margin-bottom: 20px;
+    padding: 5px 10px 5px;
+}
+
+#user_section #user_avatar
+{
+    border: 1px solid #D1D1D1;
+    width: 105px;
+    height: 105px;
+}
+
+#user_section #user_avatar .large_pic
+{
+    padding: 5px 5px 5px 5px;
+    width: 100px;
+    height: 100px;
+}
+
+#home_main
+{
+
+}
+
+#my-nav-cont
+{
+    margin-bottom: 15px;
+    padding: 3px 3px 3px;
+}
 
 
+.nav-pills > li.active > a,  .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus
+{
+    color: #000;
+    background-color: #CCC;
+}
+
+
+
+#home_sidebar
+{
+    float:left;
+    width: 20%;
+}
+
+#home_sidebar .ad
+{
+    margin-bottom: 15px;
+}
+
+#home_news
+{
+    float: left;
+    width: 55%;
+    position: relative;
+    left: 2%;
+
+    padding: 10px 0px 10px;
+    border: 1px solid #D1D1D1;
+}
+
+#home_news #news_list
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+#news_list .a-news
+{
+    margin-bottom: 20px;
+}
+
+
+#home_addition
+{
+    float: right;
+    width: 20%;
+}
+
+#home_addition #about_me
+{
+    margin-bottom: 15px;
+}
+
+#home_addition #interesting
+{
+    margin-bottom: 15px;
+}
+
+#home_addition .ad
+{
+    margin-bottom: 15px;
+}
 
 
 
