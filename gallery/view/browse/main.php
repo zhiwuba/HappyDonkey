@@ -7,26 +7,53 @@
             <h1>Welcome to my website.</h1>
         </div-->
         <div  id="paint_suggest" >
+
             <div class="shadow-box" id="today_popular">
-                <h1>Today's popular</h1>
-                <div id="popular_list">
-                    <div class="a-popular"><span>1. 小浣熊偷吃的</span></div>
-                    <div class="a-popular"><span>2. 睡醒醒的小猫</span></div>
+                <div class="column_header">
+                    <div class="head_font">大家都在看</div>
+                </div>
+                <div id="popular_list" class="column_body">
+                <?php $i=0; foreach($popular as $item ){ ?>
+                    <div class="a-popular">
+                        <a href="<?php echo $item['url']; ?>"  namecard="<?php echo $item['paint_id']?>">
+                            <div class="item_brief"><?php echo $i . ". " . $item['header'] ?></div>
+                        </a>
+                    </div>
+                <?php $i++;} ?>
                 </div>
             </div>
+
             <div class="shadow-box" id="recommend_to_you">
-                <h1>Recommend</h1>
+                <div class="column_header">
+                    <div class="head_font">猜您喜欢</div>
+                </div>
                 <div id="recommend_list">
-                    <div class="a_recommend"></div>
+                <?php $i=0; foreach($recommend as $item){ ?>
+                    <div class="a_recommend">
+                        <a href="<?php echo $item['url']; ?>" namecard="<?php echo $item['paint_id']; ?>">
+                            <div class="item_brief"><?php echo $i . ". " . $item['header']; ?></div>
+                        </a>
+                    </div>
+                <?php $i++; };?>
                 </div>
             </div>
+
             <div class="shadow-box" id="browse_history">
-                <h1>Browse history </h1>
+                <div class="column_header">
+                    <div class="head_font">我的足迹</div>
+                </div>
                 <div id="history_list">
-                    <div class="a_history"></div>
+                <?php $i=0 ;foreach($history as $item) {?>
+                    <div class="a_history">
+                        <a href="<?php echo $item['url'];?>" namecard="<?php echo $item['paint_id']?>">
+                            <div class="item_brief"><?php echo $i. " ." . $item['header']; ?></div>
+                        </a>
+                    </div>
+                <?php $i++;};?>
                 </div>
             </div>
         </div>
+
         <div  id="paint_list" >
             <?php foreach( $paint_list as $paint ){ ?>
                 <div  id="<?php echo $paint['id']?>" class="a-paint shadow-box div_center">

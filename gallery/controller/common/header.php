@@ -30,7 +30,6 @@ class ControllerCommonHeader extends Controller
         $this->template="common/header.php";
 
         $this->render();
-        //$this->response->set_output($this->render()) ;
     }
 
     private function init_document()

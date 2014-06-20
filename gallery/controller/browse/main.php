@@ -9,6 +9,7 @@
 const kShowCount=10;  // 每页显示的数量
 const kPageCount=10;  //  导航的条数
 const KHotCommentCount=3; //显示热评个数
+const kSideShowCount=8;
 
 class ControllerBrowseMain extends Controller
 {
@@ -18,13 +19,15 @@ class ControllerBrowseMain extends Controller
         {
             $this->load->model('browse/main');
             $this->load->model('account');
+            $this->load->model('browse/top');
             $req_page=$this->request->get_args('page');
             $req_page=$req_page? $req_page: 1;
 
-
             $this->get_paints($req_page);
             $this->get_pagination($req_page);
-
+            $this->get_popular();
+            $this->get_recommend();
+            $this->get_browse_history();
 
             $this->template="browse/main.php";
             $this->children=array("common/header", "common/footer");
@@ -107,6 +110,45 @@ class ControllerBrowseMain extends Controller
         {
             $this->data['next']=array('status'=>'disabled', 'url'=>'' );
         }
+    }
+
+    private function  get_popular()
+    {
+        $result=$this->model_browse_top->get_hot_paint_by_mark(kSideShowCount);
+        foreach( $result as &$paint )  /* 引用改变其原值*/
+        {
+            $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
+        }
+
+        $this->data['popular']=$result;
+    }
+
+    private function  get_browse_history()
+    {
+        if ( isset( $this->session->data['history'] ) )
+        {
+            $paints=$this->session->data['history'];
+            $result=$this->model_browse_top->get_paints_header($paints);
+            foreach( $result as &$paint )  /* 引用改变其原值*/
+            {
+                $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
+            }
+            $this->data['history']=$result;
+        }
+        else
+        {
+            $this->data['history']=array();
+        }
+    }
+
+    private function  get_recommend()
+    {
+        $result=$this->model_browse_top->get_hot_paint_by_mark(kSideShowCount);
+        foreach( $result as &$paint )  /* 引用改变其原值*/
+        {
+            $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
+        }
+        $this->data['recommend']=$result;
     }
 
 }

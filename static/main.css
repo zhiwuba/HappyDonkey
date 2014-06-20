@@ -9,6 +9,11 @@ body
 a
 {   /* 超链接无下划线 */
     text-decoration: none;
+    color: #555;
+}
+a:hover
+{
+    text-decoration: none;
     color: #227DC5;
 }
 
@@ -185,6 +190,34 @@ a
     margin-bottom: 20px;
 }
 
+.column_header
+{
+    border-bottom: 1px solid #E1DFDF;
+    margin-bottom: 2px;
+    background-color: #000;
+}
+.column_body
+{
+    /*border-top: 1px solid #E1DFDF;*/
+
+}
+
+.head_font
+{
+    font-size: 24;
+    text-align: center;
+    color:#CCC;
+    line-height: 35px; /*= column_header height*/
+}
+
+.item_brief
+{
+    margin-left: 20px;
+    text-align: left;
+    line-height: 25px;
+    border-bottom: 1px solid #E1DFDF;
+}
+
 
 /***************************home.php************************/
 
@@ -225,14 +258,11 @@ a
     padding: 3px 3px 3px;
 }
 
-
 .nav-pills > li.active > a,  .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus
 {
     color: #000;
     background-color: #CCC;
 }
-
-
 
 #home_sidebar
 {
@@ -268,7 +298,6 @@ a
     margin-bottom: 20px;
 }
 
-
 #home_addition
 {
     float: right;
@@ -288,6 +317,79 @@ a
 #home_addition .ad
 {
     margin-bottom: 15px;
+}
+
+/*****************  Paint.php  * ***************/
+#paint_main
+{
+    margin-left: auto;
+    margin-right: auto;
+    width:  70%;
+    /*background-color: #333; */
+}
+
+#paint_main #screen
+{
+    height: 480px;
+    background-color: #333333;
+}
+
+#paint_main #preview
+{
+    height: 150px;
+    background-color: #0A0A0A;
+}
+
+#paint_main #discuss
+{
+    height: 200px;
+}
+
+#paint_content
+{
+    position: relative;
+    height: 100%;
+    padding-top: 20px;
+}
+
+#paint_container
+{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    margin: auto;
+}
+
+#preview_list
+{
+
+}
+
+#preview_list:after
+{
+    content:"  ";
+    display:block;
+    clear:both;
+}
+
+
+.a_preview
+{
+    float: left;
+}
+
+.a_preview_inner
+{
+    padding: 5px 5px 5px;
+}
+
+.preview_thumb
+{
+    width: 200px;
+    height: 140px;
 }
 
 
