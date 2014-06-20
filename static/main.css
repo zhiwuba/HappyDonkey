@@ -342,7 +342,9 @@ a:hover
 
 #paint_main #discuss
 {
+    margin-top: 30px;
     height: 200px;
+    width: 70%;
 }
 
 #paint_content
@@ -391,6 +393,7 @@ a:hover
     width: 200px;
     height: 140px;
 }
+
 
 
 
