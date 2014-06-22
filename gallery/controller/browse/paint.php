@@ -12,12 +12,31 @@ class ControllerBrowsePaint  extends Controller
     {
         $this->template="browse/paint.php";
 
-
-
         $this->children=array("common/header","common/footer" );
 
         $this->response->set_output($this->render());
     }
+
+    private function  get_preview()
+    {
+
+    }
+
+    private function  get_comment()
+    {
+
+    }
+
+    public function   receive_comment()
+    {
+
+    }
+
+    public function  receive_()
+    {
+
+    }
+
 
 }
 

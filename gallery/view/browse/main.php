@@ -63,7 +63,7 @@
                     <div class="paint-content">
                         <img src="<?php echo $paint['href']; ?>" >
                     </div>
-                    <div class="paint-info">
+                    <div class="paint-brief-info">
                         <span>Paint信息</span>
                     </div>
                     <div class="paint-comment-list">
