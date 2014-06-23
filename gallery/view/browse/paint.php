@@ -1,10 +1,10 @@
 <?php echo $header; ?>
 
 <div id="paint_main" >
-    <div id="screen" >
+    <div id="screen" style="height: <?php echo $height+100;?>">
         <div id="paint_content">
-            <div id="paint_container" style="width: 335px;height: 182px;">
-                <img src="http://localhost/happydonkey/static/image/my2.gif" width="335" height="182" id="paint_img">
+            <div id="paint_container" style="width: <?php echo $width; ?>px;height: <?php echo $height; ?>px;">
+                <img src="<?php echo $href; ?>" width="<?php echo $width; ?>px" height="<?php echo $height; ?>" id="paint_img">
             </div>
         </div>
         <div id="viewer_prev"></div>
@@ -13,16 +13,15 @@
 
     <div id="preview">
         <div id="preview_list">
+
+        <?php foreach($neighbors as $neighbor) {?>
             <div class="a_preview">
                 <div class="a_preview_inner">
-                    <img src="http://localhost/happydonkey/static/image/my.png" class="preview_thumb">
+                    <img src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
                 </div>
             </div>
-            <div class="a_preview">
-                <div class="a_preview_inner">
-                    <img src="http://localhost/happydonkey/static/image/my2.png" class="preview_thumb">
-                </div>
-            </div>
+        <?php } ?>
+
         </div>
     </div>
 
@@ -42,44 +41,21 @@
                     <div style="padding-left: 10px">大家的评论</div>
                 </div>
                 <div id="comment_list">
-                    <div class="a-comment">
-                        <a class="avatar" namecard="" href="">
-                            <img class="image" src="http://localhost/happydonkey/static/image/avatar.jpg">
-                        </a>
-                        <div class="content">
-                            <p class="info">
-                                <a class="user-name" namecard="" href="">菜鸟同学</a>
-                                <span class="time">2014:04:04</span>
-                            </p>
-                            <span class="text">类信息网,为你提供房产、招聘、黄页、团购、交友、二手、宠物</span>
-                        </div>
-                    </div>
 
+                <?php foreach($comments as $comment){ ?>
                     <div class="a-comment">
-                        <a class="avatar" namecard="" href="">
-                            <img class="image" src="http://localhost/happydonkey/static/image/avatar.jpg">
+                        <a class="avatar" namecard="<?php echo $comment['user_id']?>" href="<?php echo $comment['user_url'];?>">
+                            <img class="image" src="http://localhost/happydonkey/static/image/avatar.jpg" >   <!-- "<--?php echo HTTP_SERVER . $comment['user_avatar']?>"-->
                         </a>
                         <div class="content">
                             <p class="info">
-                                <a class="user-name" namecard="" href="">菜鸟同学</a>
-                                <span class="time">2014:04:04</span>
+                                <a class="user-name" namecard="<?php echo $comment['user_id']?>" href="<?php echo $comment['user_url'];?>"><?php echo $comment['user_name'];?></a>
+                                <span class="time"><?php echo $comment['date']?></span>
                             </p>
-                            <span class="text">类信息网,为你提供房产、招聘、黄页、团购、交友、二手、宠物</span>
+                            <span class="text"><?php echo $comment['content']; ?></span>
                         </div>
                     </div>
-
-                    <div class="a-comment">
-                        <a class="avatar" namecard="" href="">
-                            <img class="image" src="http://localhost/happydonkey/static/image/avatar.jpg">
-                        </a>
-                        <div class="content">
-                            <p class="info">
-                                <a class="user-name" namecard="" href="">菜鸟同学</a>
-                                <span class="time">2014:04:04</span>
-                            </p>
-                            <span class="text">类信息网,为你提供房产、招聘、黄页、团购、交友、二手、宠物</span>
-                        </div>
-                    </div>
+                <?php } ?>
 
                 </div>
             </div>
@@ -95,8 +71,6 @@
             </div>
         </div>
     </div>
-
-
 
 </div>
 

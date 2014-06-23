@@ -20,7 +20,7 @@ require_once(DIR_System . "library/response.php");
 require_once(DIR_System . "library/session.php");
 require_once(DIR_System . "library/user.php");
 require_once(DIR_System . "library/document.php");
-require_once(DIR_System . "library/gif.php");
+require_once(DIR_System . "library/picture.php");
 require_once(DIR_System .  "library/url.php");
 
 ?>

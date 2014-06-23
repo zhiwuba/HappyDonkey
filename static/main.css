@@ -33,6 +33,18 @@ a:hover
     word-break: break-all;
 }
 
+.shadow-text
+{
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+#viewer_prev, #viewer_next
+{
+    background: url('/HappyDonkey/static/image/donkey_sprites_n.png') no-repeat scroll  0% 0% transparent ;
+}
+
+
 
 
 /**********************main.php***************************/
@@ -224,7 +236,7 @@ a:hover
 #home_wrapper
 {
     padding: 40px 0px 40px;
-    width: 760px;
+    width: 50%;
 }
 
 #user_section
@@ -235,6 +247,7 @@ a:hover
 
 #user_section #user_avatar
 {
+    /*float: left;*/
     border: 1px solid #D1D1D1;
     width: 105px;
     height: 105px;
@@ -258,11 +271,12 @@ a:hover
     padding: 3px 3px 3px;
 }
 
+/*
 .nav-pills > li.active > a,  .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus
 {
     color: #000;
     background-color: #CCC;
-}
+}*/
 
 #home_sidebar
 {
@@ -330,13 +344,33 @@ a:hover
 
 #paint_main #screen
 {
-    height: 400px;
+    position: relative;
+    min-height: 400px;
     background-color: #333333;
 }
 
 #paint_main #preview
 {
     background-color: #0A0A0A;
+}
+
+#viewer_prev, #viewer_next
+{
+    position: absolute;
+    top: 45%;
+    width: 32px;
+    height: 64px;
+    cursor: pointer;
+}
+#viewer_prev
+{
+    left: 10px;
+    background-position: -32px 0px;
+}
+#viewer_next
+{
+    right: 10px;
+    background-position: 0px 0px;
 }
 
 #paint_addition #discuss
@@ -400,7 +434,10 @@ a:hover
     width: 160px;
     height: 100px;
 }
-
+#paint_addition
+{
+    margin-bottom: 130px;
+}
 #paint_addition:after
 {
     content:"  ";

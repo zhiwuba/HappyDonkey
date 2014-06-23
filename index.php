@@ -41,18 +41,14 @@ $registry->set('response', $response);
 $session=new Session();
 $registry->set('session', $session);
 
-
-//document
-$registry->set('document', new Document());
-
 //Constance object.
+$registry->set('document', new Document());
 $registry->set('user', new User($registry));
-
+$registry->set('picture', new Picture());
 
 
 //Front Controller
 $controller=new Front($registry);
-
 
 //Router
 if  ( isset($request->get['route']) )

@@ -7,7 +7,7 @@
             <img src="<?php echo HTTP_SERVER . "static/image/big_avatar.jpg"?>" class="large_pic">
         </div>
         <div id="user_detail">
-            <h1>用户名</h1>
+            <h1 class="shadow-text">韩柳</h1>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
 
         <div id="home_sidebar">
             <div id="my-nav-cont" class="shadow-box">
-                <ul id="my-nav-list" class="nav nav-pills nav-stacked">
+                <ul id="my-nav-list" class="nav nav-stacked navbar-inverse">
                     <li class="my-nav-item active">
                         <a href="#">我的发布</a>
                     </li>
