@@ -19,5 +19,12 @@ const DB_Password="123456";
 const DB_Name="HappyDonkey";
 
 
+const kShowCount=10;  // 每页显示的数量
+const kPageCount=10;  //  导航的条数
+const KHotCommentCount=3; //显示热评个数
+const kSideShowCount=8;
+
+
+
 ?>
 
