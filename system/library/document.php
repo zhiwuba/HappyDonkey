@@ -8,30 +8,27 @@
 
 class Document
 {
-    private $title;
-    private $description;
+    private $data=array();
     private $links=array();
     private $styles=array();
     private $scripts=array();
 
-    public function set_title($title)
+
+    public function set_data($key, $value)
     {
-        $this->title=$title;
+        $this->data[$key]=$value;
     }
 
-    public function get_title()
+    public  function  get_data($key)
     {
-        return $this->title;
-    }
-
-    public function set_description($description)
-    {
-        $this->description=$description;
-    }
-
-    public function get_description()
-    {
-        return $this->description;
+        if ( isset($this->data[$key]) )
+        {
+            return $this->data[$key];
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public function add_link($href, $rel)
@@ -63,7 +60,6 @@ class Document
     {
         return $this->scripts;
     }
-
 
 }
 

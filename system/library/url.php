@@ -37,7 +37,6 @@ class Url
                 $url .=( "&$key=" .ltrim($value) );
             }
         }
-
         return $url;
     }
 

@@ -4,7 +4,7 @@
     <div id="screen" style="height: <?php echo $height+100;?>">
         <div id="paint_content">
             <div id="paint_container" style="width: <?php echo $width; ?>px;height: <?php echo $height; ?>px;">
-                <img src="<?php echo $href; ?>" width="<?php echo $width; ?>px" height="<?php echo $height; ?>" id="paint_img">
+                <img namecard="<?php echo $paint_id; ?>" src="<?php echo $href; ?>" width="<?php echo $width; ?>px" height="<?php echo $height; ?>" >
             </div>
         </div>
         <div id="viewer_prev"></div>
@@ -17,7 +17,7 @@
         <?php foreach($neighbors as $neighbor) {?>
             <div class="a_preview">
                 <div class="a_preview_inner">
-                    <img src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
+                    <img namecard="<?php echo $paint_id; ?>" src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
                 </div>
             </div>
         <?php } ?>
@@ -30,9 +30,9 @@
             <div id="my_comment" > <!--class="shadow-box"-->
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="我的快评">
-                <span class="input-group-btn" >
-                    <button class="btn btn-default" type="button"  style="background-color: #0A0A0A; color: #CCC">发送</button>
-                </span>
+                    <span class="input-group-btn" >
+                        <button id="send_comment" class="btn btn-default" type="button"  style="background-color: #0A0A0A; color: #CCC">发送</button>
+                    </span>
                 </div>
             </div>
 

@@ -11,13 +11,18 @@ const kPreviewCount=7;
 
 class ControllerBrowsePaint  extends Controller
 {
+    public  function __construct($registry)
+    {
+        parent::__construct($registry);
+        $this->load->model('browse/paint');
+        $this->load->model('account');
+    }
+
     public function  index()
     {
         $paint_id=$this->request->get_args('paint_id');
         if ( $paint_id )
         {
-            $this->load->model('browse/paint');
-            $this->load->model('account');
             $this->get_paint($paint_id);
             $this->get_preview($paint_id);
             $this->get_comment($paint_id);
@@ -32,6 +37,7 @@ class ControllerBrowsePaint  extends Controller
     {
         $paint=$this->model_browse_paint->get_paint($paint_id);
         $this->data['href']=$paint['file_path'];
+        $this->data['paint_id']=$paint_id;
 
         if ( $this->picture->easy_parse(DIR_Root . $paint['file_path']) )
         {
@@ -81,15 +87,26 @@ class ControllerBrowsePaint  extends Controller
         $this->data['update_comments']=$this->get_comment( $paint_id , $last, kCommentCount);
     }
     //接收用户评论
-    public function   receive_my_comment()
+    public function comment()
     {
-        if ( $this->user->is_logged() )
+        //TODO: LOGIN
+        if ( true )//$this->user->is_logged() )
         {
+            if ($this->request->method()=="POST" )
+            {
+                $user_id= 4;//$this->user->get_id() ;
+                $paint_id=$this->request->get_args("paint_id");
+                $comment=$this->request->get_args("comment");
+                $this->model_browse_paint->comment($paint_id, $user_id, $comment );
 
+                $info=array('status'=>"success");
+                $this->response->set_output(json_encode($info));
+            }
         }
         else
         {
-
+            $info=array('status'=>"fail");
+            $this->response->set_output(json_encode($info));
         }
     }
 

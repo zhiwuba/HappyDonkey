@@ -15,6 +15,8 @@ class ControllerZoneHome extends  Controller
         $this->load->model("account");
         $this->load->model("browse/paint");
 
+        $this->set_document();
+
         $request_uid=$this->request->get_args('uid');
 
         if ( $this->user->is_logged() )
@@ -90,17 +92,18 @@ class ControllerZoneHome extends  Controller
             }
             else
             {
-                if (count($squad) )
+                if ( isset($squad['items']) )
                 {
                     $group[]=$squad;
                     unset($squad);
                 }
                 $last_date=$date;
                 $squad['items'][]=$item;
-                $squad['data']=$date;
+                $squad['date']=$date;
                 $squad['type']='favorite';
             }
         }
+        $group[]=$squad;
 
         $this->data['collection']=$group;
     }
@@ -120,6 +123,13 @@ class ControllerZoneHome extends  Controller
             }
             $this->data['recommend']=$result;
         }
+    }
+
+    private function  set_document()
+    {
+        $this->document->set_data('title', "我的空间");
+        $this->document->set_data('description', "我的个人空间");
+        $this->document->set_data('current', "home");
     }
 
 

@@ -20,6 +20,7 @@ class ControllerBrowseMain extends Controller
             $req_page=$this->request->get_args('page');
             $req_page=$req_page? $req_page: 1;
 
+            $this->set_document();
             $this->get_paints($req_page);
             $this->get_pagination($req_page);
             $this->get_popular();
@@ -146,6 +147,13 @@ class ControllerBrowseMain extends Controller
             $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
         }
         $this->data['recommend']=$result;
+    }
+
+    private function  set_document()
+    {
+        $this->document->set_data('title', "GIF库");
+        $this->document->set_data('description', "搜集GIF图片");
+        $this->document->set_data('current', "main");
     }
 
 }

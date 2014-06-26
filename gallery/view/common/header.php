@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo $title; ?></title>
+    <base href="<?php echo $base; ?>">
 <?php if ($description): ?>
     <meta name="description" content="<?php echo $description; ?>">
 <?php endif; ?>
@@ -24,14 +25,14 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">GIF库</a>
+                <a class="navbar-brand" href="<?php echo $main; ?>">GIF库</a>
             </div>
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
-                    <li><a href="#">排行榜</a></li>
-                    <li><a href="#">我的收藏</a></li>
+                    <li <?php if( $current=='main' ){echo 'class="active"' ;}?>><a href="<?php echo $main; ?>">首页</a></li>
+                    <li <?php if( $current=='board' ){echo 'class="active"' ;}?>><a href="<?php echo $board; ?>">排行榜</a></li>
+                    <li <?php if( $current=='home' ){echo 'class="active"' ;}?>><a href="<?php echo $home; ?>">我的空间</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav pull-right">
@@ -39,7 +40,7 @@
                     <li><a data-toggle="modal" data-target="#login_modal"><i class="glyphicon glyphicon-log-in"></i> 登陆</a></li>
                 </ul>
 
-                <form class="navbar-form navbar-right" role="search" action="#">
+                <form class="navbar-form navbar-right" role="search" action="<?php echo $search;?>" method="post" >
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="搜索" name="word">
                     </div>
