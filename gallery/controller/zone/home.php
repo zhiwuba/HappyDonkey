@@ -8,13 +8,18 @@
 
 class ControllerZoneHome extends  Controller
 {
-    public function index()
+    public function __construct($registry)
     {
+        parent::__construct($registry);
+
         $this->load->model("zone/home");
         $this->load->model("browse/top");
         $this->load->model("account");
         $this->load->model("browse/paint");
+    }
 
+    public function index()
+    {
         $this->set_document();
 
         $request_uid=$this->request->get_args('uid');

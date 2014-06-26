@@ -58,9 +58,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" style="padding: 10px; margin-bottom: 10px; display: none;">登陆失败</div>
-                    <form class="form-signin" role="form">
-                        <input type="text" class="form-control" placeholder="邮箱" required autofocus>
-                        <input type="password" class="form-control" placeholder="密码" required>
+                    <form class="form-signin" role="form" method="post" action="<?php echo $login; ?>">
+                        <input type="text" class="form-control" placeholder="邮箱" style="margin-bottom:10px;" required autofocus>
+                        <input type="password" class="form-control" placeholder="密码" style="margin-bottom:10px;" required>
                         <label class="checkbox">
                             <input type="checkbox" value="remember-me"> 记住密码
                         </label>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" style="padding: 10px; margin-bottom: 10px; display: none;">注册失败</div>
-                    <form class="form-register" role="form">
+                    <form class="form-register" role="form" method="post" action="<?php echo $register;?>">
                         <input type="text" class="form-control" placeholder="邮箱"  style="margin-bottom:10px;" required autofocus>
                         <input type="text" class="form-control" placeholder="用户名" style="margin-bottom: 10px;" required>
                         <input type="password" class="form-control" placeholder="密码" style="margin-bottom: 10px;" required>

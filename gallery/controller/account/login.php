@@ -15,7 +15,7 @@ class ControllerAccountLogin extends  Controller
             $info=array();
             if ( isset($this->session['user_id']) )
             {
-                $this->redirect('HelloWorld');
+                $this->redirect($this->url->link("zone/home", ''));
             }
             else
             {
