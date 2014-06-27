@@ -36,7 +36,7 @@ class ModelAccount extends  Model
         $this->db->query("INSERT INTO hd_users (username, email, salt, password, status, date_added, ip) VALUES " .  $user_value);
 
         $info['user_id']=$this->db->get_last_id();
-        $info['status']='ok';
+        $info['status']='success';
 
         return $info;
     }

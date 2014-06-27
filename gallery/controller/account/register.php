@@ -10,17 +10,18 @@ class ControllerAccountRegister extends  Controller
 {
     public function index()
     {
-        $this->template="account/register.php";
-
         if ( $this->request->server['REQUEST_METHOD']=='POST' )
         {
             $this->load->model("account");
-            $info=$this->model_account_register->register( $this->request->post['username'], $this->request->post['email'], $this->request->post['password'] );
+            $info=$this->model_account->register( $this->request->post['username'], $this->request->post['email'], $this->request->post['password'] );
+
             return $this->response->set_output(json_encode($info));
         }
         else
         {
-            $this->response->set_output($this->render());
+            $info['status']='fail';
+            $info['info']='只接受POST方法';
+            $this->response->set_output(json_encode($info));
         }
     }
 

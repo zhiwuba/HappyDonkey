@@ -108,7 +108,10 @@ class ControllerZoneHome extends  Controller
                 $squad['type']='favorite';
             }
         }
-        $group[]=$squad;
+        if ( isset($squad['items']) )
+        {
+            $group[]=$squad;
+        }
 
         $this->data['collection']=$group;
     }

@@ -13,32 +13,28 @@ class ControllerAccountLogin extends  Controller
         if ($this->request->server['REQUEST_METHOD']=='POST')
         {
             $info=array();
-            if ( isset($this->session['user_id']) )
+            if ( $this->user->is_logged() )
             {
-                $this->redirect($this->url->link("zone/home", ''));
+                $info['status']='success';
+                $info['user_id']=$this->user->get_id();
+                $info['info']='已经登陆';
             }
             else
             {
                 $info=array();
                 $this->load->model('account');
-                if ( $this->user->login($this->request->post['email'], $this->request->post['password']) )
+                if ( $this->user->login($this->request->get_args('email'), $this->request->get_args('password')) )
                 {
-                    $info['status']='ok';
+                    $info['status']='success';
                     $info['user_id']=$this->user->get_id();
                     $info['info']='登陆成功';
+                    $this->session->set('user_id', $info['user_id'] );
+                    $this->session->set('last_ip' , $this->request->server['REMOTE_ADDR'] );
                 }
                 else
                 {
-                    $info['status']='error';
+                    $info['status']='fail';
                     $info['info']='登陆失败';
-                }
-
-                $info=$this->model_account_account->login();
-
-                if ( $info['status']=='ok' )
-                {
-                    $this->session['user_id']=$info['user_id'];
-                    $this->session['last_ip']=$this->request->server['REMOTE_ADDR'];
                 }
             }
 

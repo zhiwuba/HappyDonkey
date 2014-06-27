@@ -123,9 +123,9 @@ class ControllerBrowseMain extends Controller
 
     private function  get_browse_history()
     {
-        if ( isset( $this->session->data['history'] ) )
+        if ( $this->session->get('history') )
         {
-            $paints=$this->session->data['history'];
+            $paints=$this->session->get('history');
             $result=$this->model_browse_top->get_paints_header($paints);
             foreach( $result as &$paint )  /* 引用改变其原值*/
             {

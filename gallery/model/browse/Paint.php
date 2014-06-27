@@ -44,7 +44,7 @@ class ModelBrowsePaint extends  Model
     //评论
     public function comment($paint_id, $user_id , $comment)
     {
-        $result=$this->db->query("INSERT INTO hd_comments (paint_id,user_id,comment,date_added) VALUES ('" . $paint_id . "', '" . $user_id . "', '" . $comment . "', NOW())");
+        $result=$this->db->query("INSERT INTO hd_comments (paint_id,user_id,content,date_added) VALUES ('" . $paint_id . "', '" . $user_id . "', '" . $comment . "', NOW())");
         return $result;
     }
 

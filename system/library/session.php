@@ -18,6 +18,23 @@ class Session
         $this->data=& $_SESSION;
     }
 
+    public function set( $key, $value)
+    {
+        $this->data[$key]=$value;
+    }
+
+    public function  get( $key )
+    {
+        if ( isset($this->data[$key]) )
+        {
+            return $this->data[$key];
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     function get_id()
     {
         return session_id();

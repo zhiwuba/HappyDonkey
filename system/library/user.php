@@ -20,14 +20,15 @@ class User
         $this->request=$registry->get('request');
         $this->session=$registry->get('session');
 
-        if (isset($this->session->data["user_id"]))
+        if ($this->session->get("user_id"))
         {
-            $user_query=$this->db->query("SELECT * FROM user WHERE user_id='" . $this->session->data['user_id'] ."' AND status='1'" );
-            if ( count($user_query) )
+            $user_query=$this->db->query("SELECT * FROM hd_users WHERE user_id='" . $this->session->get('user_id') ."' AND status='1'" );
+            if ( count($user_query)==1 )
             {
-                $this->user_id=$user_query["user_id"];
-                $this->user_name=$user_query["user_name"];
-                $this->email=$user_query["email"];
+                $user_info=$user_query[0];
+                $this->user_id=$user_info["user_id"];
+                $this->user_name=$user_info["username"];
+                $this->email=$user_info["email"];
                 $this->user_ip=$this->request->server['REMOTE_ADDR'];
             }
             else
@@ -41,25 +42,27 @@ class User
     {
         if ( $override )
         {
-            $command="SELECT *  FROM hd_users WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) . "' AND status='1'" ;
+            $command="SELECT *  FROM hd_users WHERE LOWER(email)='" . $this->db->escape($email) . "' AND status='1'" ;
             $user_query=$this->db->query($command);
         }
         else
         {
+            $email_clean=$this->db->escape($email);
+            $password_clean=$this->db->escape($password);
             //三次SHA1 加密
-            $command="SELECT * FROM hd_users WHERE LOWER(email)='" . $this->db->escape(utf8_strtolower($email)) .
-                "' AND (password=SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape(utf8_strtolower($password)) .
-                "' ))))) OR password='" .$this->db->escape(md5($password)) . "' AND status='1'" ;
+            $command="SELECT * FROM hd_users WHERE LOWER(email)='$email_clean' AND password=SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('$password_clean' )))))" ;
+            //TODO:  AND status='1' status的理解
 
             $user_query=$this->db->query($command);
         }
 
-        if ( count($user_query) )
+        if ( count($user_query)==1 )
         {
-            $this->session->data["user_id"]=$user_query["user_id"];
-            $this->user_id=$user_query["user_id"];
-            $this->user_name=$user_query["user_name"];
-            $this->email= $user_query["email"];
+            $user_info=$user_query[0];
+            $this->session->set("user_id", $user_info["user_id"]);
+            $this->user_id=$user_info["user_id"];
+            $this->user_name=$user_info["username"];
+            $this->email= $user_info["email"];
             $this->user_ip=$this->request->server['REMOTE_ADDR'];
             return true;
         }

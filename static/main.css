@@ -38,12 +38,12 @@ a:hover
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-#viewer_prev, #viewer_next
+#viewer_prev, #viewer_next, #thumb_prev, #thumb_next
 {
     background: url('/HappyDonkey/static/image/donkey_sprites_n.png') no-repeat scroll  0% 0% transparent ;
 }
 
-#preview_list:after, #gallery:after,#paint_addition:after, #user_section:after, .new_header:after
+#preview_list:after, #gallery:after,#paint_addition:after, #user_section:after, .new_header:after, #preview:after
 {
     content:"  ";
     display:block;
@@ -405,12 +405,29 @@ a:hover
     margin: auto;
 }
 
+#thumb_prev , #thumb_next
+{
+    width: 12px;
+    height: 32px;
+    display: block;
+    position: relative;
+    top: 38px;
+}
+#thumb_prev
+{
+    float: left;
+    background-position: -64px -192px;
+}
+#thumb_next
+{
+    float: right;
+    background-position: 0px -192px;
+}
 #preview_list
 {
-
+    float: left;
+    width: 95%;
 }
-
-
 
 .a_preview
 {

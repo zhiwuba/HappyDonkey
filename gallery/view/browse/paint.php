@@ -12,6 +12,7 @@
     </div>
 
     <div id="preview">
+        <div id="thumb_prev"></div>
         <div id="preview_list">
 
         <?php foreach($neighbors as $neighbor) {?>
@@ -23,6 +24,7 @@
         <?php } ?>
 
         </div>
+        <div id="thumb_next"></div>
     </div>
 
     <div id="paint_addition">
