@@ -363,12 +363,12 @@ a:hover
 #viewer_prev
 {
     left: 10px;
-    background-position: -32px 0px;
+    background-position: -96px 0px;
 }
 #viewer_next
 {
     right: 10px;
-    background-position: 0px 0px;
+    background-position: -64px 0px;
 }
 
 #paint_addition #discuss
@@ -407,7 +407,7 @@ a:hover
 
 #thumb_prev , #thumb_next
 {
-    width: 12px;
+    width: 20px;
     height: 32px;
     display: block;
     position: relative;
@@ -427,16 +427,18 @@ a:hover
 {
     float: left;
     width: 95%;
+    padding: 3px 0px;
 }
 
 .a_preview
 {
     float: left;
+    margin-right: 2px;
 }
 
 .a_preview_inner
 {
-    padding: 6px;
+    padding: 3px 3px;
 }
 
 .preview_thumb

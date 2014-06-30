@@ -54,7 +54,7 @@ class ControllerBrowseMain extends Controller
                         'user_id'=>$comment['user_id'],
                         'user_name'=>$user_info['username'],
                         'user_avatar'=>$user_info['avatar_thumb_path'],
-                        'user_url'=>$this->url->link('zone/home', array('id'=>$comment['user_id'])),
+                        'user_url'=>$this->url->link('zone/home', array('uid'=>$comment['user_id'])),
                         'date'=>$comment['date_added'],
                         'content'=>$comment['content'],
                     );
@@ -67,6 +67,8 @@ class ControllerBrowseMain extends Controller
                 'comment'=>$paint['comment'],
                 'other_comments'=> $other_comments,
                 'href'=>$paint['thumb_path'],
+                'header'=>$paint['header'],
+                ''
             );
         }
     }
@@ -115,7 +117,7 @@ class ControllerBrowseMain extends Controller
         $result=$this->model_browse_top->get_hot_paint_by_mark(kSideShowCount);
         foreach( $result as &$paint )  /* 引用改变其原值*/
         {
-            $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
+            $paint['url']=$this->url->link('browse/paint', array('pid'=>$paint['paint_id']) );
         }
 
         $this->data['popular']=$result;
@@ -129,7 +131,7 @@ class ControllerBrowseMain extends Controller
             $result=$this->model_browse_top->get_paints_header($paints);
             foreach( $result as &$paint )  /* 引用改变其原值*/
             {
-                $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
+                $paint['url']=$this->url->link('browse/paint', array('pid'=>$paint['paint_id']) );
             }
             $this->data['history']=$result;
         }
@@ -144,7 +146,7 @@ class ControllerBrowseMain extends Controller
         $result=$this->model_browse_top->get_hot_paint_by_mark(kSideShowCount);
         foreach( $result as &$paint )  /* 引用改变其原值*/
         {
-            $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
+            $paint['url']=$this->url->link('browse/paint', array('pid'=>$paint['paint_id']) );
         }
         $this->data['recommend']=$result;
     }

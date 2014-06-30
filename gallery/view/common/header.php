@@ -30,8 +30,9 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li <?php if( $current=='main' ){echo 'class="active"' ;}?>><a href="<?php echo $main; ?>">首页</a></li>
+                    <li <?php if( $current=='main' ){echo 'class="active"' ;}?>><a href="<?php echo  $main; ?>">首页</a></li>
                     <li <?php if( $current=='board' ){echo 'class="active"' ;}?>><a href="<?php echo $board; ?>">排行榜</a></li>
+                    <li <?php if( $current=='search' ){echo 'class="active"';}?>><a href="<?php echo $search; ?>">搜搜乐</a></li>
                     <li <?php if( $current=='home' ){echo 'class="active"' ;}?>><a href="<?php echo $home; ?>">我的空间</a></li>
                 </ul>
 

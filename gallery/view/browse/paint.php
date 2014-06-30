@@ -4,7 +4,7 @@
     <div id="screen" style="height: <?php echo $height+100;?>">
         <div id="paint_content">
             <div id="paint_container" style="width: <?php echo $width; ?>px;height: <?php echo $height; ?>px;">
-                <img namecard="<?php echo $paint_id; ?>" src="<?php echo $href; ?>" width="<?php echo $width; ?>px" height="<?php echo $height; ?>" >
+                <img pid="<?php echo $paint_id; ?>" src="<?php echo $href; ?>" width="<?php echo $width; ?>px" height="<?php echo $height; ?>" >
             </div>
         </div>
         <div id="viewer_prev"></div>
@@ -13,15 +13,15 @@
 
     <div id="preview">
         <div id="thumb_prev"></div>
-        <div id="preview_list">
+        <div id="preview_list" current_id="a_preview_0">
 
-        <?php foreach($neighbors as $neighbor) {?>
-            <div class="a_preview">
+        <?php $i=0; foreach($neighbors as $neighbor) {?>
+            <div id="a_preview_<?php echo $i?>" class="a_preview">
                 <div class="a_preview_inner">
-                    <img namecard="<?php echo $paint_id; ?>" src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
+                    <img pid="<?php echo $neighbor['paint_id']; ?>" src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
                 </div>
             </div>
-        <?php } ?>
+        <?php $i++; } ?>
 
         </div>
         <div id="thumb_next"></div>

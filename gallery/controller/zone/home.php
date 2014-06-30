@@ -127,7 +127,7 @@ class ControllerZoneHome extends  Controller
             $result=$this->model_browse_top->get_hot_paint_by_mark(kSideShowCount);
             foreach( $result as &$paint )  /* 引用改变其原值*/
             {
-                $paint['url']=$this->url->link('browse/paint', array('id'=>$paint['paint_id']) );
+                $paint['url']=$this->url->link('browse/paint', array('pid'=>$paint['paint_id']) );
             }
             $this->data['recommend']=$result;
         }

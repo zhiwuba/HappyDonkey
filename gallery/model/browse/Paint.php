@@ -9,13 +9,28 @@
 class ModelBrowsePaint extends  Model
 {
     // 获取Paint的信息
-    public function get_paint($paint_id)
+    public function get_paint($paint_id, $type='', $offset=0)
     {
-        $query_result=$this->db->query("SELECT * FROM hd_paints WHERE paint_id=$paint_id");
-        return $query_result[0];
+        $paint=array();
+        if ( $offset==0 )
+        { //cur
+            $result=$this->db->query("SELECT * FROM hd_paints WHERE paint_id=$paint_id");
+            $paint=$result[0];
+        }
+        else if ( $offset<0 )
+        { //prev
+            $result=$this->db->query("SELECT * FROM hd_paints WHERE paint_id<$paint_id ORDER BY paint_id DESC LIMIT 1");
+            $paint=$result[0];
+        }
+        else if ($offset >0)
+        {  //next
+            $result=$this->db->query("SELECT * FROM hd_paints WHERE paint_id>$paint_id LIMIT 1");
+            $paint=$result[0];
+        }
+        return $paint;
     }
 
-    public function get_neighbors($paint_id, $is_forward ,$count )
+    public function get_neighbors($paint_id,$type ,$is_forward ,$count )
     {
         if ( $is_forward )
         {
@@ -23,7 +38,7 @@ class ModelBrowsePaint extends  Model
         }
         else
         {
-            $neighbor=$this->db->query("SELECT paint_id,thumb_path FROM hd_paints WHERE paint_id<$paint_id ORDER BY date_added DESC LIMIT $count");
+            $neighbor=$this->db->query("SELECT paint_id,thumb_path FROM hd_paints WHERE paint_id<$paint_id ORDER BY paint_id DESC LIMIT $count");
         }
         return $neighbor;
     }
@@ -97,5 +112,8 @@ class ModelBrowsePaint extends  Model
         $query_result=$this->db->query("SELECT * FROM hd_favorites WHERE user_id=$user_id");
         return  $query_result;
     }
+
+
+
 
 }

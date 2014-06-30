@@ -17,10 +17,10 @@ class ControllerBrowsePaint  extends Controller
         $this->load->model('browse/paint');
         $this->load->model('account');
     }
-
+    //  Index Interface.
     public function  index()
     {
-        $paint_id=$this->request->get_args('paint_id');
+        $paint_id=$this->request->get_args('pid');
         if ( $paint_id )
         {
             $this->get_paint($paint_id);
@@ -35,7 +35,7 @@ class ControllerBrowsePaint  extends Controller
 
     private function  get_paint($paint_id)
     {
-        $paint=$this->model_browse_paint->get_paint($paint_id);
+        $paint=$this->model_browse_paint->get_paint($paint_id,null,0);
         $this->data['href']=$paint['file_path'];
         $this->data['paint_id']=$paint_id;
 
@@ -55,7 +55,7 @@ class ControllerBrowsePaint  extends Controller
 
     private function  get_preview($paint_id)
     {
-        $neighbors=$this->model_browse_paint->get_neighbors($paint_id, true ,kPreviewCount);
+        $neighbors=$this->model_browse_paint->get_neighbors($paint_id, null , true ,kPreviewCount);
         $this->data['neighbors']=$neighbors;
     }
 
@@ -79,6 +79,63 @@ class ControllerBrowsePaint  extends Controller
             }
         }
         $this->data['comments']=$comments;
+    }
+
+    //浏览切换
+    public function get_neighbor_view( )
+    {
+        $cur_pid=intval($this->request->get_args('pid'));
+        $offset=intval($this->request->get_args('offset'));
+        $type='';
+        switch($type)
+        {
+            case 'favorite':
+                break;
+            case 'board':
+                break;
+            case 'search':
+                break;
+            case 'album':
+                break;
+            default:
+                $result=$this->model_browse_paint->get_paint($cur_pid, $type, $offset);
+                break;
+        }
+
+        if ( $this->picture->easy_parse(DIR_Root . $result['file_path']) )
+        {
+            $dimension=$this->picture->get_pic_dimension();
+            $result['width']=$dimension['x'];
+            $result['height']=$dimension['y'];
+        }
+        else
+        {
+            $result['width']=0;
+            $result['height']=0;
+        }
+        return $this->response->set_output( json_encode($result));
+    }
+
+    public function get_neighbor_thumbs()
+    {
+        $cur_pid=intval($this->request->get_args('pid'));
+        $offset=intval($this->request->get_args('offset'));
+        $type='';
+        switch($type)
+        {
+            case 'favorite':
+                break;
+            case 'board':
+                break;
+            case 'search':
+                break;
+            case 'album':
+                break;
+            default:
+                $result=$this->model_browse_paint->get_neighbors($cur_pid, $type, $offset, kPreviewCount);
+                break;
+        }
+        return $this->response->set_output(json_encode($result));
     }
 
     //浏览更多评论

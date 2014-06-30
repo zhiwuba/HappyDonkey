@@ -58,13 +58,13 @@
             <?php foreach( $paint_list as $paint ){ ?>
                 <div  id="<?php echo $paint['id']?>" class="a-paint shadow-box div_center">
                     <div class="paint_header">
-                        <h2>Paint头部</h2>
+                        <h2><?php echo $paint['header']?></h2>
                     </div>
                     <div class="paint-content">
                         <img src="<?php echo $paint['href']; ?>" >
                     </div>
                     <div class="paint-brief-info">
-                        <span>Paint信息</span>
+                        <span><?php echo $paint['comment'];?></span>
                     </div>
                     <div class="paint-comment-list">
 
