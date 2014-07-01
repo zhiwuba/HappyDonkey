@@ -167,12 +167,58 @@ class ControllerBrowsePaint  extends Controller
         }
     }
 
+    public function operate()
+    {
+        $info=array();
+        //TODO: LOGIN
+        if ( true ) //$this->user->is_logged()
+        {
+            if ($this->request->method()=="POST" )
+            {
+                $user_id=4; //$this->user->get_id();
+                $paint_id=$this->request->get_args('pid');
+                $operate_type=$this->request->get_args('type');
+                $old_value=$this->request->get_args('value');
 
+                $ret=false;
+                switch($operate_type)
+                {
+                    case 0: //赞
+                        $ret=$this->model_browse_paint->appraise($paint_id ,true);
+                        break;
+                    case 1: //踩
+                        $ret=$this->model_browse_paint->appraise($paint_id ,false);
+                        break;
+                    case 2: //收藏
+                        $ret=$this->model_browse_paint->favicon($user_id, $paint_id);
+                        break;
+                }
+                if ( $ret )
+                {
+                    $info['status']='success';
+                }
+                else
+                {
+                    $info['status']='fail';
+                    $info['info']='操作失败';
+                }
+            }
+            else
+            {
+                $info['status']='fail';
+                $info['info']='方法不对';
+            }
+        }
+        else
+        {
+            $info['status']='fail';
+            $info['info']='请先登录';
+        }
+        $this->response->set_output($info);
+    }
 
 
 
 }
-
-
 
 ?>

@@ -9,6 +9,18 @@
         </div>
         <div id="viewer_prev"></div>
         <div id="viewer_next"></div>
+        <div id="paint-good"  style="width: 41px;" val="0" type="0">
+            <div class="sprite-img" style="background-position: 0px -224px;"></div>
+            <div class="sprite-text" style="display: none;">顶</div>
+        </div>
+        <div id="paint-bad" style="width: 41px;" val="0" type="1">
+            <div class="sprite-img" style="background-position: -96px -224px;"></div>
+            <div class="sprite-text" style="display: none;">踩</div>
+        </div>
+        <div id="paint-collect" style="width: 41px;" val="0" type="2">
+            <div class="sprite-img" style="background-position: -64px -224px;"></div>
+            <div class="sprite-text" style="display: none;">收藏</div>
+        </div>
     </div>
 
     <div id="preview">

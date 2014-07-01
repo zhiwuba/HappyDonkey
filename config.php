@@ -8,6 +8,7 @@ define("DIR_Root", "D:/Web/HappyDonkey/");
 define("DIR_Gallery", "D:/Web/HappyDonkey/gallery/");
 define("DIR_System", "D:/Web/HappyDonkey/system/");
 define("DIR_Admin", "D:/Web/HappyDonkey/admin/");
+define("DIR_Temp", "D:/Web/HappyDonkey/temp/");
 
 define("DIR_Gallery_Template", DIR_Gallery."view/");
 define("DIR_Admin_Template", DIR_Admin."view/");

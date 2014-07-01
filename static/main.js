@@ -170,6 +170,31 @@ $(document).ready( function(){
     }).mouseout(function(){
         $(this).css('background-position', '0px -192px' );
     });
+
+    $("#paint-good, #paint-bad, #paint-collect").mouseover(function(){
+        $(this).find(".sprite-text").css('display', 'block');
+        $(this).css('width', '73px');
+    }).mouseout(function(){
+        $(this).find(".sprite-text").css('display', 'none');
+        $(this).css('width', '41px');
+    }).click(function(){
+        $.post("index.php?route=browse/paint", {'pid': $('#paint_container > img').attr('pid') , 'val':   , 'type':  } , function(data, status){
+            if (status=='success'){
+
+            }else{
+                "联网失败";
+            }
+        });
+        if ( $(this).attr('val')==0 ){
+            $(this).css('background-position', "0px -64px");
+            $(this).attr('val', 1);
+        }else{
+            $(this).css('background-position', '0px -128px');
+
+            $(this).attr('val', 0);
+        }
+    });
+
     // preview 点击预览
     $(".a_preview").click(function(){
         var pic=$(this).find("img").attr("src");
