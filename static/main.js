@@ -288,9 +288,12 @@ function refresh_thumbs(data, direction)
 }
 
 
-function show_alert()
+function search_gifs()
 {
-
+    var keywords=$("#search_input > input").val();
+    if ( keywords.length>0 ){
+        var ek=encodeURIComponent(keywords);
+        var search_url=$('base').text()+"index.php?route=browse/search&keywords="+ek;
+        location.href=search_url;
+    }
 }
-
-

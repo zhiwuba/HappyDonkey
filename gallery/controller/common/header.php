@@ -40,7 +40,6 @@ class ControllerCommonHeader extends Controller
         else
         {
             $this->data['logged']=false;
-            $this->data['home']=$this->url->link('zone/home', '');
         }
 
         $this->template="common/header.php";

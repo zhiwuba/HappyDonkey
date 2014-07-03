@@ -74,7 +74,7 @@ class Request
         }
         else
         {
-            $data=htmlspecialchars($data, ENT_COMPAT, 'UTF-8');
+            $data=htmlspecialchars_decode($data, ENT_QUOTES);//ENT_COMPAT, 'UTF-8');
         }
         return $data;
     }

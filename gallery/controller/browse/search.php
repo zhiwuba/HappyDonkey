@@ -14,17 +14,22 @@ class ControllerBrowseSearch extends Controller
     {
         $this->load->model('browse/search');
 
-        $keywords=$this->request->get_args("keywords");
-        if ($keywords)
+        $ek=$this->request->get_args("keywords");
+        if ($ek)
         {
+            $keywords=urldecode($ek);
+            $this->data['home']=false;
             $this->data['keywords']=$keywords;
             $this->search($keywords);
-
-            $this->template="browse/search.php";
-            $this->children=array("common/header","common/footer");
-            $this->response->set_output($this->render());
+        }
+        else
+        {
+            $this->data['home']=true;
         }
 
+        $this->template="browse/search.php";
+        $this->children=array("common/header","common/footer");
+        $this->response->set_output($this->render());
     }
 
     private function search($keywords)

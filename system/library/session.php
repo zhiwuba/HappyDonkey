@@ -11,7 +11,7 @@ class Session
             ini_set('session.use_cookies', 'On');
             ini_set('session.use_trans_sid', 'Off');
 
-            session_cache_limiter('private');
+            //session_cache_limiter('private');
             session_set_cookie_params(0 , '/');
             session_start();
         }

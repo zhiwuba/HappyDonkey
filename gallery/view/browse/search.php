@@ -2,47 +2,42 @@
 
 <div id="search-container" class="div_center">
 
-    <!--div id="search-box" class="form-group">
-        <div id="search_box_img">
+    <div id="search-box" style="<?php if( !$home )echo "margin-top:30px" ?>">
+        <div id="search_box_img" style="<?php if(!$home)echo "display:none";?>">
             <img src="static/image/search.jpg" width="570px" height="205px">
-</div>
-    <div id="search_input" class="input-group">
-        <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">搜索</button>
-            </span>
-    </div>
-    </div-->
-
-    <div id="search-header" style="margin-top: 30px;">
+        </div>
         <div id="search_input" class="input-group">
-            <input type="text" class="form-control" placeholder="<?php echo $keywords;?>">
+            <input type="text" class="form-control" onkeypress="if(event.keyCode==13){search_gifs();}" value="<?php if(!$home)echo $keywords;?>">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">搜索</button>
+                <button class="btn btn-default" type="submit" onclick="search_gifs()">搜索</button>
             </span>
         </div>
     </div>
 
-    <div id="search_result">
-        <div id="result_list">
-        <?php $i=0; foreach($results as $result){ ?>
-            <div class="a_search_result ">
-                <div class="search_item_info">
-                    <div class="title">
-                        <div class="title_id"><?php echo $i;?>. </div>
-                        <div class="title_text"><a href="<?php echo $result['url'];?>"><?php echo $result['title']?></a></div>
+    <?php if ( $home ){?>
+
+    <?php }else{ ?>
+        <div id="search_result">
+            <div id="result_list">
+                <?php $i=0; foreach($results as $result){ ?>
+                    <div class="a_search_result ">
+                        <div class="search_item_info">
+                            <div class="title">
+                                <div class="title_id"><?php echo $i;?>. </div>
+                                <div class="title_text"><a href="<?php echo $result['url'];?>"><?php echo $result['title']?></a></div>
+                            </div>
+                            <div class="body"><?php echo $result['text'];?></div>
+                        </div>
+                        <div class="search_item_img">
+                            <a href="<?php echo $result['url'];?>">
+                                <img src="<?php echo $result['thumb']?>" width="153px" height="100px">
+                            </a>
+                        </div>
                     </div>
-                    <div class="body"><?php echo $result['text'];?></div>
-                </div>
-                <div class="search_item_img">
-                    <a href="<?php echo $result['url'];?>">
-                        <img src="<?php echo $result['thumb']?>" width="153px" height="100px">
-                    </a>
-                </div>
+                    <?php $i++; } ?>
             </div>
-        <?php $i++; } ?>
         </div>
-    </div>
+    <?php } ?>
 
 </div>
 
