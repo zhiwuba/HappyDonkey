@@ -178,21 +178,30 @@ $(document).ready( function(){
         $(this).find(".sprite-text").css('display', 'none');
         $(this).css('width', '41px');
     }).click(function(){
-        $.post("index.php?route=browse/paint", {'pid': $('#paint_container > img').attr('pid') , 'val':   , 'type':  } , function(data, status){
+        var pid=$('#paint_container > img').attr('pid');
+        var val=$(this).attr('val');
+        var type=$(this).attr('type');
+        var temp=$(this);
+        $.post("index.php?route=browse/paint/operate", {'pid': pid , 'val': val , 'type': type } , function(data, status){
             if (status=='success'){
-
+                var json_data=$.parseJSON(data);
+                if (json_data['status']=='success'){
+                    if ( val==0 ){
+                        temp.css('background-position', "0px -64px");
+                        temp.children(".sprite-text").text( temp.attr('textval1') );
+                        temp.attr('val', 1);
+                    }else{
+                        temp.css('background-position', '0px -128px');
+                        temp.children(".sprite-text").text( temp.attr('textval0') );
+                        temp.attr('val', 0);
+                    }
+                }else{
+                    alert(json_data['info']);
+                }
             }else{
-                "联网失败";
+                alert("联网失败");
             }
         });
-        if ( $(this).attr('val')==0 ){
-            $(this).css('background-position', "0px -64px");
-            $(this).attr('val', 1);
-        }else{
-            $(this).css('background-position', '0px -128px');
-
-            $(this).attr('val', 0);
-        }
     });
 
     // preview 点击预览
@@ -245,7 +254,6 @@ function refresh_thumbs(data, direction)
         all_data.push(obj);
     });
     pre_size=all_data.length;
-
     if ( direction==1 ){ //forward
         all_data=all_data.concat(data);
     }else if( direction==-1 ){ //backward
@@ -277,18 +285,12 @@ function refresh_thumbs(data, direction)
                 clearInterval(time_id);
         }
     }
-
-    /*
-    var i=0;
-    $('#preview_list>.a_preview').each( function() {
-        if(i<data.length){
-            $(this).find('img').attr('src',data[i].thumb_path).attr('pid',data[i].paint_id).css('display', 'block');
-        }else{
-            $(this).find('img').attr('src',"").attr('pid',0).css('display','none');
-        }
-        i++;
-    } ); */
 }
 
+
+function show_alert()
+{
+
+}
 
 

@@ -7,7 +7,7 @@
  */
 
 const kCommentCount=15;
-const kPreviewCount=7;
+const kPreviewCount=8;
 
 class ControllerBrowsePaint  extends Controller
 {
@@ -26,6 +26,7 @@ class ControllerBrowsePaint  extends Controller
             $this->get_paint($paint_id);
             $this->get_preview($paint_id);
             $this->get_comment($paint_id);
+            $this->get_user_record($paint_id);
 
             $this->template="browse/paint.php";
             $this->children=array("common/header","common/footer" );
@@ -79,6 +80,26 @@ class ControllerBrowsePaint  extends Controller
             }
         }
         $this->data['comments']=$comments;
+    }
+
+    private function  get_user_record($paint_id)
+    {
+        $this->data['is_good']=0;
+        $this->data['is_bad']=0;
+        $this->data['is_favorite']=0;
+
+        if ( $this->user->is_logged() )
+        {
+            $this->data['is_logged']=true;
+            $record=$this->model_browse_paint->get_record( $this->user->get_id(), $paint_id );
+            if ( $record )
+            {
+                $this->data['is_good']=($record&1)? 1 : 0;
+                $this->data['is_bad']=($record&2)? 1 : 0;
+                $this->data['is_favorite']=($record&4)? 1: 0;
+                return;
+            }
+        }
     }
 
     //浏览切换
@@ -146,8 +167,7 @@ class ControllerBrowsePaint  extends Controller
     //接收用户评论
     public function comment()
     {
-        //TODO: LOGIN
-        if ( true )//$this->user->is_logged() )
+        if ( $this->user->is_logged() )
         {
             if ($this->request->method()=="POST" )
             {
@@ -170,38 +190,30 @@ class ControllerBrowsePaint  extends Controller
     public function operate()
     {
         $info=array();
-        //TODO: LOGIN
-        if ( true ) //$this->user->is_logged()
+
+        if ( $this->user->is_logged() )
         {
-            if ($this->request->method()=="POST" )
+            if ( $this->request->method()=="POST" )
             {
-                $user_id=4; //$this->user->get_id();
+                $user_id=$this->user->get_id();
                 $paint_id=$this->request->get_args('pid');
                 $operate_type=$this->request->get_args('type');
-                $old_value=$this->request->get_args('value');
+                $old_value=$this->request->get_args('val');
 
-                $ret=false;
                 switch($operate_type)
                 {
                     case 0: //赞
-                        $ret=$this->model_browse_paint->appraise($paint_id ,true);
+                        $this->model_browse_paint->appraise($user_id ,$paint_id ,true, $old_value);
                         break;
                     case 1: //踩
-                        $ret=$this->model_browse_paint->appraise($paint_id ,false);
+                        $this->model_browse_paint->appraise($user_id, $paint_id ,false, $old_value);
                         break;
                     case 2: //收藏
-                        $ret=$this->model_browse_paint->favicon($user_id, $paint_id);
+                        $this->model_browse_paint->favicon($user_id, $paint_id, $old_value);
                         break;
                 }
-                if ( $ret )
-                {
-                    $info['status']='success';
-                }
-                else
-                {
-                    $info['status']='fail';
-                    $info['info']='操作失败';
-                }
+
+                $info['status']='success';
             }
             else
             {
@@ -214,7 +226,7 @@ class ControllerBrowsePaint  extends Controller
             $info['status']='fail';
             $info['info']='请先登录';
         }
-        $this->response->set_output($info);
+        $this->response->set_output(json_encode($info));
     }
 
 

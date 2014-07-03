@@ -5,6 +5,9 @@
  * Date: 14-6-15
  * Time: 下午6:53
  */
+const kFavorite=4;
+const kBad=2;
+const kGood=1;
 
 class ModelBrowsePaint extends  Model
 {
@@ -44,16 +47,37 @@ class ModelBrowsePaint extends  Model
     }
 
     //赞、匾
-    public function appraise($paint_id, $good)
+    public function appraise($user_id, $paint_id, $good,$abolish=false)
     {
         if ($good)
         {
-            $this->db->query("UPDATE hd_paints  SET good=good+1  WHERE paint_id= $paint_id");
+            $this->update_record($user_id, $paint_id, $abolish, kGood);
+            $cc=$abolish ? -1 : 1;
+            $this->db->query("UPDATE hd_paints  SET good=good+$cc  WHERE paint_id= $paint_id");
         }
         else
         {
-            $this->db->query("UPDATE hd_paints  SET bad=bad+1 WHERE paint_id=$paint_id");
+            $this->update_record($user_id, $paint_id, $abolish, kBad);
+            $cc=$abolish ? -1 : 1;
+            $this->db->query("UPDATE hd_paints  SET bad=bad+$cc  WHERE paint_id= $paint_id");
         }
+    }
+
+    //收藏夹
+    public function  favicon($user_id, $paint_id, $abolish)
+    {
+        return $this->update_record($user_id, $paint_id, $abolish, kFavorite);
+    }
+
+    //获取user_id--paint_id记录
+    public function get_record($user_id, $paint_id)
+    {
+        $query_result=$this->db->query("SELECT operate FROM hd_records WHERE user_id=$user_id AND paint_id=$paint_id");
+        if ( count($query_result)>0 )
+        {
+            return $query_result[0];
+        }
+        return false;
     }
 
     //评论
@@ -61,14 +85,6 @@ class ModelBrowsePaint extends  Model
     {
         $result=$this->db->query("INSERT INTO hd_comments (paint_id,user_id,content,date_added) VALUES ('" . $paint_id . "', '" . $user_id . "', '" . $comment . "', NOW())");
         return $result;
-    }
-
-    //获取
-    public function get_appraise($paint_id)
-    {
-        $query_result=$this->db->query("SELECT * FROM hd_marks WHERE paint_id=$paint_id");
-
-        return $query_result;
     }
 
     //获取
@@ -85,33 +101,32 @@ class ModelBrowsePaint extends  Model
     }
 
 
-    //收藏夹
-    public function  favicon($user_id, $paint_id)
+    private function update_record( $user_id, $paint_id, $abolish, $value )
     {
-        $query_result=$this->db->query("SELECT * FROM hd_favorites WHERE user_id=$user_id AND paint_id=$paint_id");
-        if ( count($query_result)>0 )
+        if ( $abolish )
         {
-            return false;
+            $vv=$value-1;
+            $query_result=$this->db->query("UPDATE hd_records SET operate=operate&$vv)  WHERE user_id=$user_id AND paint_id=$paint_id");
+            return $query_result? true: false;
         }
         else
         {
-            $query_result=$this->db->query("INSERT INTO hd_favorites (user_id, paint_id, date_added) VALUES ('" . $user_id . "' ,'" . $paint_id . "' , NOW())");
-            if ( $query_result )
-            {
-                return true;
+            $query_result=$this->db->query("SELECT  record_id FROM hd_records WHERE user_id=$user_id AND paint_id=$paint_id");
+            if ( count($query_result)>0 )
+            {   //如果已存在  直接返回true
+                $record_id=$query_result[0]['record_id'];
+                $query_result=$this->db->query("UPDATE hd_records SET operate=operate|$value , favorite_date=NOW()  WHERE record_id=$record_id");
+                return $query_result? true: false;
             }
             else
-            {
-                return false;
+            {   //如果不存在
+                $query_result=$this->db->query("INSERT INTO hd_records (user_id, paint_id,operate, favorite_date) VALUES ($user_id ,$paint_id, $value ,NOW())");
+                return $query_result? true: false;
             }
         }
     }
 
-    public function  get_favicon($user_id)
-    {
-        $query_result=$this->db->query("SELECT * FROM hd_favorites WHERE user_id=$user_id");
-        return  $query_result;
-    }
+
 
 
 

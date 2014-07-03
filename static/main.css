@@ -43,7 +43,8 @@ a:hover
     background: url('/HappyDonkey/static/image/donkey_sprites_n.png') no-repeat scroll  0% 0% transparent ;
 }
 
-#preview_list:after, #gallery:after,#paint_addition:after, #user_section:after, .new_header:after, #preview:after, #board_list:after, #board_container:after
+#preview_list:after, #gallery:after,#paint_addition:after, #user_section:after, .new_header:after, #preview:after,
+#board_list:after, #board_container:after, .a_search_result:after, .search_item_info .title:after
 {
     content:"  ";
     display:block;
@@ -313,7 +314,7 @@ a:hover
 {
     margin-left: auto;
     margin-right: auto;
-    width:  70%;
+    width:  1332px;
     /*background-color: #333; */
 }
 
@@ -444,7 +445,9 @@ a:hover
 #preview_list
 {
     float: left;
-    width: 95%;
+    width: 1292px;
+    /*margin-left: 58px;
+    margin-right: 58px; */
     padding: 3px 0px;
 }
 
@@ -461,7 +464,7 @@ a:hover
 
 .preview_thumb
 {
-    width: 160px;
+    width: 153px;
     height: 100px;
 }
 #paint_addition
@@ -503,14 +506,7 @@ a:hover
 #board_main
 {
     float: left;
-    width: 75%;
-    border-right: 2px solid #000;
-}
-#board_sidebar
-{
-    float: right;
-    width: 20%;
-    min-width: 100px;
+    width: 100%;
 }
 
 .a-board
@@ -527,9 +523,9 @@ a:hover
 /******************  Search.php  **********************/
 #search-container
 {
-    width: 60%;
-    min-width: 1000px;
-    margin-top: 30px;
+    width: 800px;
+    min-width: 800px;
+    min-height: 750px;
 }
 
 #search-box
@@ -547,8 +543,43 @@ a:hover
     width: 570px;
 }
 
+.a_search_result
+{
+    padding: 10px;
+    margin: 20px 0px;
+    border-width: 1px 1px 1px 5px;
+    border-style: solid;
+    border-color: #2A74FB;
+    border-image: none;
+    border-radius: 3px;
+    border-left-color: #2A74FB;
 
+    width: 570px;
+}
 
+.search_item_info
+{
+    float: left;
+}
+.search_item_info .title  .title_id
+{
+    font-size: 15px;
+    font-weight: bolder;
+    width: 40px;
+    float: left;
+}
+.search_item_info  .title .title_text
+{
+    width: 340px;
+    float: right;
+}
+.search_item_info  .body
+{
+    height: 82px;
+}
 
-
+.search_item_img
+{
+    float: right;
+}
 

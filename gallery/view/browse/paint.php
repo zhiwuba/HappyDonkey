@@ -9,17 +9,17 @@
         </div>
         <div id="viewer_prev"></div>
         <div id="viewer_next"></div>
-        <div id="paint-good"  style="width: 41px;" val="0" type="0">
+        <div id="paint-good"  style="width: 41px;" val="<?php echo $is_good;?>" type="0" textval0="顶" textval1="已顶">
             <div class="sprite-img" style="background-position: 0px -224px;"></div>
-            <div class="sprite-text" style="display: none;">顶</div>
+            <div class="sprite-text" style="display: none;"><?php if ($is_good)echo "已顶"; else echo "顶" ; ?></div>
         </div>
-        <div id="paint-bad" style="width: 41px;" val="0" type="1">
+        <div id="paint-bad" style="width: 41px;" val="<?php echo $is_bad;?>" type="1" textval0="踩" textval1="已踩">
             <div class="sprite-img" style="background-position: -96px -224px;"></div>
-            <div class="sprite-text" style="display: none;">踩</div>
+            <div class="sprite-text" style="display: none;"><?php if($is_bad)echo "已踩"; else echo "踩";?></div>
         </div>
-        <div id="paint-collect" style="width: 41px;" val="0" type="2">
+        <div id="paint-collect" style="width: 41px;" val="<?php echo $is_favorite; ?>" type="2" textval0="收藏" textval1="已藏">
             <div class="sprite-img" style="background-position: -64px -224px;"></div>
-            <div class="sprite-text" style="display: none;">收藏</div>
+            <div class="sprite-text" style="display: none;"><?php if($is_favorite)echo "已藏"; else echo "收藏"; ?></div>
         </div>
     </div>
 
@@ -53,6 +53,7 @@
             <div id="other_comment" class="shadow-box div_center">
                 <div id="comment-header">
                     <div style="padding-left: 10px">大家的评论</div>
+
                 </div>
                 <div id="comment_list">
 

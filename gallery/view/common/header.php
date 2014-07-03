@@ -32,8 +32,6 @@
                 <ul class="nav navbar-nav">
                     <li <?php if( $current=='main' ){echo 'class="active"' ;}?>><a href="<?php echo  $main; ?>">首页</a></li>
                     <li <?php if( $current=='board' ){echo 'class="active"' ;}?>><a href="<?php echo $board; ?>">排行榜</a></li>
-                    <li <?php if( $current=='search' ){echo 'class="active"';}?>><a href="<?php echo $search; ?>">搜搜乐</a></li>
-                    <li <?php if( $current=='home' ){echo 'class="active"' ;}?>><a href="<?php echo $home; ?>">我的空间</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav pull-right">
@@ -46,9 +44,9 @@
                 <?php } ?>
                 </ul>
 
-                <form class="navbar-form navbar-right" role="search" action="<?php echo $search;?>" method="post" >
+                <form class="navbar-form navbar-right" role="search" action="<?php echo $search;?>" method="get" >
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索" name="word">
+                        <input type="text" class="form-control" placeholder="搜索" name="keywords">
                     </div>
                 </form>
             </div>

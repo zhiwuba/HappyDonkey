@@ -88,7 +88,7 @@ class ControllerZoneHome extends  Controller
         $squad=array();
         foreach( $items as $item )
         {
-            $date=strtok($item['date_added'], ' ');
+            $date=strtok($item['favorite_date'], ' ');
             $paint_info=$this->model_browse_paint->get_paint($item['paint_id']);
             $item['thumb_href']=$paint_info['thumb_path'];
             if ( $date==$last_date )
