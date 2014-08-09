@@ -13,8 +13,8 @@ final class HD_MySql
             trigger_error('Error: could not make a database link('.  mysqli_connect_errno().')'.  mysqli_connect_error() );
         }
         
-        $this->link->set_charset("utf8");
-        $this->link->query("SET SQL_MODE = ''");
+        //$this->link->set_charset("utf8");
+        //$this->link->query("SET SQL_MODE = ''");
     }
     
     public function __destruct() 

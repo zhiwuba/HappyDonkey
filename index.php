@@ -57,7 +57,7 @@ if  ( isset($request->get['route']) )
 }
 else
 {
-    $action=new Action('common/home');
+    $action=new Action('browse/main');
 }
 
 //Dispatch
@@ -65,6 +65,5 @@ $controller->dispatch($action, new Action('error/not_found'));
 
 //Output
 $response->output();
-
 
 ?>
