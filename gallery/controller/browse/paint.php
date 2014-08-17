@@ -40,7 +40,7 @@ class ControllerBrowsePaint  extends Controller
         $this->data['href']=$paint['file_path'];
         $this->data['paint_id']=$paint_id;
 
-        if ( $this->picture->easy_parse(DIR_Root . $paint['file_path']) )
+        if ( $this->picture->easy_parse(DIR_Storage . $paint['file_path']) )
         {
             $dimension=$this->picture->get_pic_dimension();
 

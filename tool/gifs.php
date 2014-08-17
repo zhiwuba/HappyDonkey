@@ -9,26 +9,45 @@
 require_once("GifFrameExtractor.php");
 use GifFrameExtractor\GifFrameExtractor;
 
-class GifToMP4
+class Gifs
 {
     private  $extractor;
-
+		public static $temp_path="/tmp/gifs/";
     public function __construct()
     {
-        $this->extractor=new GifFrameExtractor();
+				$this->extractor=new GifFrameExtractor();
+				if(!is_dir(self::$temp_path))
+				{
+					mkdir(self::$temp_path);
+				}
     }
 
-    public function convert($source, $destination)
+    public function extract($source)
     {
-        $temp_path=DIR_Temp+"gif";
-        empty_path($temp_path);
-        extract_gif($source , $temp_path);
-        compound($temp_path,$destination);
-        return true;
+				$this->clear_path(self::$temp_path);
+				$this->extract_gif($source);
+				return true;
     }
+
+		public function to_mp4($dest)
+		{
+				$this->compound($dest);
+				return true;
+		}
+
+		public function save_thumb($dest)
+		{
+			$src_file=self::$temp_path . 'frame0.jpg';
+			if(file_exists($src_file))
+			{
+				copy($src_file,$dest);
+				return true;
+			}
+			return false;
+		}
 
     //解压
-    private function extract_gif($src, $temp_path)
+    private function extract_gif($src)
     {
         try
         {
@@ -39,7 +58,7 @@ class GifToMP4
             $i=0;
             foreach($images as $image)
             {
-                imagepng($image, $temp_path . "frame$i.png");
+                imagejpeg($image, self::$temp_path . "frame$i.jpg", 100);
                 $i++;
             }
 
@@ -53,16 +72,22 @@ class GifToMP4
     }
 
     //合成
-    private function compound($temp_path, $destination)
+    private function compound($destination)
     {
         $duration=$this->extractor->getTotalDuration();
         $count=$this->extractor->getFrameNumber();
-        $fre=intval($count/$duration);
-        system("ffmpeg.exe -f image2 -i $temp_path/frame%d.png -vcodec libx264 -r $fre $destination");
+				if($duration<=0 || $count <=0)
+				{
+					echo "$count  $duration $destination \n";
+					return false;
+				}
+        $fre=intval(($count/$duration)*100);
+				$temp=self::$temp_path;
+        system("ffmpeg -f image2 -i $temp/frame%d.jpg -vcodec libx264 -r $fre $destination >> /home/website/log/convert.log 2>&1");
     }
 
     //清空
-    private function  empty_path($path)
+    private function clear_path($path)
     {
         if ( $handle=opendir($path) )
         {
@@ -70,7 +95,7 @@ class GifToMP4
             {
                 if ( $file!='.' && $file!='..' )
                 {
-                    unlink($file);
+                    unlink($path . $file);
                 }
             }
         }

@@ -61,7 +61,7 @@
                         <h2><?php echo $paint['header']?></h2>
                     </div>
                     <div class="paint-content">
-                        <img src="<?php echo DIR_Storage . $paint['href']; ?>" >
+                        <img src="<?php echo $paint['href']; ?>" >
                     </div>
                     <div class="paint-brief-info">
                         <span><?php echo $paint['comment'];?></span>

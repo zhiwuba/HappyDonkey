@@ -61,12 +61,13 @@ class ControllerBrowseMain extends Controller
                 }
             }
 
+						$thumb_path= DIR_Storage . "thumb/" . pathinfo($paint['file_path'], PATHINFO_FILENAME) . ".jpg";
 
             $this->data["paint_list"][]=array(
                 'id'=>$paint['paint_id'] ,
                 'comment'=>$paint['comment'],
                 'other_comments'=> $other_comments,
-                'href'=>$paint['thumb_path'],
+                'href'=> $thumb_path,
                 'header'=>$paint['header'],
                 ''
             );
