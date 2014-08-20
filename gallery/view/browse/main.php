@@ -61,7 +61,7 @@
                         <h2><?php echo $paint['header']?></h2>
                     </div>
                     <div class="paint-content">
-                        <img src="<?php echo $paint['href']; ?>" >
+												<a href="<?php echo $paint['paint_url']?>"><img src="<?php echo $paint['thumb']; ?>" ></a>
                     </div>
                     <div class="paint-brief-info">
                         <span><?php echo $paint['comment'];?></span>

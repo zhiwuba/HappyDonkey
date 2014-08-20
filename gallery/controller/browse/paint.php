@@ -23,6 +23,7 @@ class ControllerBrowsePaint  extends Controller
         $paint_id=$this->request->get_args('pid');
         if ( $paint_id )
         {
+						$this->data['type']="gif";
             $this->get_paint($paint_id);
             $this->get_preview($paint_id);
             $this->get_comment($paint_id);
@@ -37,10 +38,17 @@ class ControllerBrowsePaint  extends Controller
     private function  get_paint($paint_id)
     {
         $paint=$this->model_browse_paint->get_paint($paint_id,null,0);
-        $this->data['href']=$paint['file_path'];
+				if($this->data['type']=='mp4')
+				{
+					$this->data['href']=URL_Simple . pathinfo($paint['file_name'],PATHINFO_FILENAME) . '.mp4';	
+				}
+				else
+				{
+					$this->data['href']=URL_Original . $paint['file_name'];
+				}
         $this->data['paint_id']=$paint_id;
 
-        if ( $this->picture->easy_parse(DIR_Storage . $paint['file_path']) )
+        if ( $this->picture->easy_parse(DIR_Original . $paint['file_name']) )
         {
             $dimension=$this->picture->get_pic_dimension();
 
@@ -57,11 +65,24 @@ class ControllerBrowsePaint  extends Controller
     private function  get_preview($paint_id)
     {
         $neighbors=$this->model_browse_paint->get_neighbors($paint_id, null , true ,kPreviewCount);
+				foreach($neighbors as &$neighbor)
+				{
+					$neighbor['thumb_path']=URL_Thumb . pathinfo($neighbor['file_name'], PATHINFO_FILENAME). '.jpg'; 
+					if($this->data['type']=='mp4')
+					{
+						$neighbor['movie_url']= URL_Simple . pathinfo($neighbor['file_name'],PATHINFO_FILENAME) . '.mp4';
+					}
+					else
+					{
+						$neighbor['movie_url']=URL_Original . $neighbor['file_name'];
+					}
+				}
         $this->data['neighbors']=$neighbors;
     }
 
     private function  get_comment($paint_id, $page=1)
     {
+				$comments=array();
         $begin=($page-1)*kCommentCount;
         $results=$this->model_browse_paint->get_comment($paint_id,$begin, kCommentCount);
         foreach ( $results  as  $comment)
@@ -123,7 +144,7 @@ class ControllerBrowsePaint  extends Controller
                 break;
         }
 
-        if ( $this->picture->easy_parse(DIR_Root . $result['file_path']) )
+        if ( $this->picture->easy_parse(DIR_Original .$result['file_name']) )
         {
             $dimension=$this->picture->get_pic_dimension();
             $result['width']=$dimension['x'];

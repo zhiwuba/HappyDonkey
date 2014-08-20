@@ -37,11 +37,11 @@ class ModelBrowsePaint extends  Model
     {
         if ( $is_forward )
         {
-            $neighbor=$this->db->query("SELECT paint_id,thumb_path FROM hd_paints WHERE paint_id>$paint_id LIMIT $count");
+            $neighbor=$this->db->query("SELECT paint_id,file_name FROM hd_paints WHERE paint_id>$paint_id LIMIT $count");
         }
         else
         {
-            $neighbor=$this->db->query("SELECT paint_id,thumb_path FROM hd_paints WHERE paint_id<$paint_id ORDER BY paint_id DESC LIMIT $count");
+            $neighbor=$this->db->query("SELECT paint_id,file_name FROM hd_paints WHERE paint_id<$paint_id ORDER BY paint_id DESC LIMIT $count");
         }
         return $neighbor;
     }

@@ -206,9 +206,9 @@ $(document).ready( function(){
 
     // preview 点击预览
     $(".a_preview").click(function(){
-        var pic=$(this).find("img").attr("src");
+        var movie=$(this).find("img").attr("movie_url");
         var paint_id=$(this).find("img").attr("pid");
-        $("#paint_container").find("img").attr("src", pic).attr("pid", paint_id);
+        $("#paint_container>img,video").attr("src", movie).attr("pid", paint_id);
         var current=$("#preview_list").attr('current_id');
         $("#preview_list").attr('current_id',  $(this).attr('id') );
 

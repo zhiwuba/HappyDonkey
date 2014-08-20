@@ -4,7 +4,11 @@
     <div id="screen" style="height: <?php echo $height+100;?>">
         <div id="paint_content">
             <div id="paint_container" style="width: <?php echo $width; ?>px;height: <?php echo $height; ?>px;">
-                <img pid="<?php echo $paint_id; ?>" src="<?php echo DIR_Storage . $href; ?>" width="<?php echo $width; ?>px" height="<?php echo $height; ?>" >
+						<?php if( $type!='mp4' ){?>
+								<img pid="<?php echo $paint_id; ?>" src="<?php echo $href; ?>" width="<?php echo $width; ?>px" height="<?php echo $height; ?>" >
+						<?php }else{ ?>
+								<video src="<?php echo $href; ?>" type="video/mp4" autoplay loop></video>
+						<?php }?>
             </div>
         </div>
         <div id="viewer_prev"></div>
@@ -30,7 +34,7 @@
         <?php $i=0; foreach($neighbors as $neighbor) {?>
             <div id="a_preview_<?php echo $i?>" class="a_preview">
                 <div class="a_preview_inner">
-                    <img pid="<?php echo $neighbor['paint_id']; ?>" src="<?php echo DIR_Storage . $neighbor['thumb_path'];?>" class="preview_thumb">
+										<img pid="<?php echo $neighbor['paint_id']; ?>" movie_url="<?php echo $neighbor['movie_url'];?>" src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
                 </div>
             </div>
         <?php $i++; } ?>
