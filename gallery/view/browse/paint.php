@@ -34,7 +34,7 @@
         <?php $i=0; foreach($neighbors as $neighbor) {?>
             <div id="a_preview_<?php echo $i?>" class="a_preview">
                 <div class="a_preview_inner">
-										<img pid="<?php echo $neighbor['paint_id']; ?>" movie_url="<?php echo $neighbor['movie_url'];?>" src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
+                    <img pid="<?php echo $neighbor['paint_id']; ?>" movie_url="<?php echo $neighbor['movie_url'];?>" src="<?php echo $neighbor['thumb_path'];?>" class="preview_thumb">
                 </div>
             </div>
         <?php $i++; } ?>

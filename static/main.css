@@ -2,8 +2,9 @@
 body
 {
     padding-top: 50px;
-    background-color: #EEE;
-    font: 12px/18px arial,STHeiti,'Microsoft YaHei','宋体';
+    background-color: #E5E5E5;
+    font: 13px/18px arial,STHeiti,'Microsoft YaHei','宋体';
+
 }
 
 a
@@ -38,13 +39,19 @@ a:hover
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+.beauty_alphabet
+{
+    font:  13px Roboto,arial,sans-serif;
+    font-weight: bold ;
+}
+
 #viewer_prev, #viewer_next, #thumb_prev, #thumb_next,#paint-good, #paint-bad, #paint-collect, .sprite-img
 {
     background: url('/HappyDonkey/static/image/donkey_sprites_n.png') no-repeat scroll  0% 0% transparent ;
 }
 
 #preview_list:after, #gallery:after,#paint_addition:after, #user_section:after, .new_header:after, #preview:after,
-#board_list:after, #board_container:after, .a_search_result:after, .search_item_info .title:after
+#board_list:after, #board_container:after, .a_search_result:after, .search_item_info .title:after, .paint-header:after
 {
     content:"  ";
     display:block;
@@ -97,30 +104,36 @@ a:hover
     min-height: 100px ;
 }
 
-.a-paint
-{
-    margin-bottom: 20px;
-    width: 500px;
-}
+/**  paint  **/
+.a-paint{ margin-bottom: 20px; width: 500px; }
+.a-paint  .paint-header{  }
+.paint-header .paint-number{width:50px; height:50px; background-color:#00AAAA;  border-radius:25px;  margin: 5px 5px 3px;  float: left }
+.paint-number span{ height:50px; line-height:50px; display:block; color:#FFF; text-align:center;}
 
-.a-paint  .paint-header
-{
+.paint-header .paint-date{ margin: 20px 0px 0px 9px ;float: left }
+.paint-date span{ color: #00AAAA }
 
+.a-paint .paint-brief-info
+{
+    padding: 10px 50px ;
+    word-break: normal;
 }
 
 .a-paint .paint-content
 {
-
+    background-color: #F5F5F5;
+    border: 1px solid #E5E5E5;
+    margin: 10px 6px 10px;
 }
 
-.a-paint .paint-brief-info
+.a-paint .paint-operate
 {
-    border-bottom: 1px solid #E1DFDF;
-    padding: 15px 10px 15px 15px;
+    margin-bottom: 10px;
 }
 
 .a-paint .paint-comment-list
 {
+    border-top: 1px solid #E1DFDF;
     background-color: #f8f8f8;
     padding: 10px 10px 15px 15px;
 }

@@ -231,6 +231,12 @@ $(document).ready( function(){
 } );
 
 
+function play_gif(paint_id, movie_url)
+{
+    var html="<video src=\""+ movie_url +"\" type=\"video/mp4\" autoplay loop></video>";
+    $("#"+paint_id+">.paint-content>.paint-wrap>a").html(html);
+}
+
 function  refresh_view(data)
 {
     var pid=data.paint_id;

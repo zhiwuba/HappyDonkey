@@ -61,19 +61,22 @@ class ControllerBrowseMain extends Controller
                 }
             }
 
-						$thumb_path= URL_Thumb . pathinfo($paint['file_name'], PATHINFO_FILENAME) . ".jpg";
+            $thumb_path= URL_Thumb . pathinfo($paint['file_name'], PATHINFO_FILENAME) . ".jpg";
+            $movie_path= URL_Simple .pathinfo($paint['file_name'], PATHINFO_FILENAME) . ".mp4";
 
             $this->data["paint_list"][]=array(
                 'id'=>$paint['paint_id'] ,
                 'comment'=>$paint['comment'],
                 'other_comments'=> $other_comments,
                 'thumb'=> $thumb_path,
-								'paint_url'=>$this->url->link('browse/paint', array('pid'=>$paint['paint_id'])),
-                'header'=>$paint['header'],
+                'movie_url'=>$movie_path, //$this->url->link('browse/paint', array('pid'=>$paint['paint_id'])),
+                'date'=>$paint['date_added'],
+                'good'=>$paint['good'],
+                'bad'=>$paint['bad'],
+                'mark'=>$paint['mark']
             );
         }
     }
-
 
     private function get_pagination($req_page)
     {

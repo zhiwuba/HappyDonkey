@@ -55,16 +55,39 @@
         </div>
 
         <div  id="paint_list" >
+            <?php $i=1; ?>
             <?php foreach( $paint_list as $paint ){ ?>
                 <div  id="<?php echo $paint['id']?>" class="a-paint shadow-box div_center">
-                    <div class="paint_header">
-                        <h2><?php echo $paint['header']?></h2>
-                    </div>
-                    <div class="paint-content">
-												<a href="<?php echo $paint['paint_url']?>"><img src="<?php echo $paint['thumb']; ?>" ></a>
+                    <div class="paint-header">
+                        <div class="paint-number">
+                            <span><?php echo $i;?></span>
+                        </div>
+                        <div class="paint-date">
+                            <span><?php echo $paint['date'];?></span>
+                        </div>
                     </div>
                     <div class="paint-brief-info">
                         <span><?php echo $paint['comment'];?></span>
+                    </div>
+                    <div class="paint-content">
+                        <div class="paint-wrap">
+                            <a href="javascript: play_gif(<?php echo $paint['id'];?>, '<?php echo $paint['movie_url'];?>')">
+                                <img src="<?php echo $paint['thumb']; ?>" >
+                            </a>
+                        </div>
+                    </div>
+                    <div class="paint-operate beauty_alphabet">
+                        <div class="btn-toolbar" role="toolbar">
+                            <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="赞">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $paint['good'];?>
+                            </button>
+                            <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="踩"·>
+                                <span class="glyphicon glyphicon-thumbs-down"></span> <?php echo $paint['bad']?>
+                            </button>
+                            <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="收藏">
+                                <span class="glyphicon glyphicon-star-empty"></span> <?php echo $paint['mark'];?>
+                            </button>
+                        </div>
                     </div>
                     <div class="paint-comment-list">
 
@@ -85,7 +108,7 @@
 
                     </div>
                 </div>
-            <?php } ?>
+            <?php $i++;} ?>
 
             <div class="paging">
                 <ul class="pagination">
