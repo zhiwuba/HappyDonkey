@@ -78,20 +78,20 @@ class Gif
     //合成
     private function compound($destination)
     {
-				$fre=10;
+        $fre=10;
         $duration=$this->extractor->getTotalDuration();
         $count=$this->extractor->getFrameNumber();
         if($duration<=0 || $count <=0)
         {
           echo "$count  $duration $destination \n";
         }
-				else
-				{
-					$fre=intval(($count/$duration)*100);
-				}
-				$temp=DIR_Temp;
+        else
+        {
+            $fre=intval(($count/$duration)*100);
+        }
+        $temp=DIR_Temp;
         system("ffmpeg -f image2 -r $fre -i $temp/frame%d.jpg -vf \"scale=trunc(iw/2)*2:trunc(ih/2)*2\" -vcodec libx264 $destination>>/home/website/log/convert.log 2>&1");
-				return true;
+        return true;
     }
 
     //清空
@@ -148,14 +148,13 @@ function convert()
             $simple=Storage_Simple . $filename . '.mp4';
             if(!(file_exists($thumb)&&file_exists($simple)))
             {
-								echo "Process " . Storage_Original . $file ."\n";
+                echo "Process " . Storage_Original . $file ."\n";
                 $gif->extract(Storage_Original . $file);
                 $gif->to_mp4($simple);
                 $gif->save_thumb($thumb);
             }
         }
-		 }
-
+     }
 }
 
 convert();

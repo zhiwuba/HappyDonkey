@@ -78,7 +78,7 @@
                     </div>
                     <div class="paint-operate beauty_alphabet">
                         <div class="btn-toolbar" role="toolbar">
-                            <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="赞">
+                            <button class="btn btn-default btn-sm btn-good" data-toggle="tooltip" data-placement="bottom" title="赞">
                                 <span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $paint['good'];?>
                             </button>
                             <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="踩"·>
