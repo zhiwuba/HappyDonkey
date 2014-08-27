@@ -2,10 +2,7 @@
 
 <div id="search-container" class="div_center">
 
-    <div id="search-box" style="<?php if( !$home )echo "margin-top:30px" ?>">
-        <div id="search_box_img" style="<?php if(!$home)echo "display:none";?>">
-            <img src="static/image/search.jpg" width="570px" height="205px">
-        </div>
+    <div id="search-box" style= "margin-top:30px">
         <div id="search_input" class="input-group">
             <input type="text" class="form-control" onkeypress="if(event.keyCode==13){search_gifs();}" value="<?php if(!$home)echo $keywords;?>">
             <span class="input-group-btn">
@@ -14,6 +11,9 @@
         </div>
     </div>
 
+    <div id="hot-search" style="margin-top: 10px">
+
+    </div>
     <?php if ( $home ){?>
 
     <?php }else{ ?>

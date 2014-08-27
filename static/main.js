@@ -233,8 +233,9 @@ $(document).ready( function(){
 
 function play_gif(paint_id, movie_url)
 {
-    var html="<video src=\""+ movie_url +"\" type=\"video/mp4\" autoplay loop></video>";
-    $("#"+paint_id+">.paint-content>.paint-wrap>a").html(html);
+    var screen=$("#"+paint_id+">.paint-content>.paint-wrap>a");
+    var html="<video class='div_center' src=\""+ movie_url +"\" type=\"video/mp4\" oncanplaythrough =\"movie_play("+paint_id+")\"  autoplay loop style=\"display:none\"></video>";
+    screen.append(html);
 }
 
 function  refresh_view(data)
@@ -302,4 +303,11 @@ function search_gifs()
         var search_url=$('base').text()+"index.php?route=browse/search&keywords="+ek;
         location.href=search_url;
     }
+}
+
+function movie_play(paint_id)
+{
+    var screen=$("#"+paint_id+">.paint-content>.paint-wrap>a>video");
+    screen.css("display","block");
+    $("#"+paint_id+">.paint-content>.paint-wrap>a>img").css("display", "none");
 }

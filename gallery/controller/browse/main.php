@@ -33,6 +33,15 @@ class ControllerBrowseMain extends Controller
         }
     }
 
+    public function get_movie()
+    {
+        if( $this->request->method()=='GET' )
+        {
+
+        }
+    }
+
+
     private function  get_paints($req_page )
     {
         $start=($req_page-1)*kShowCount;
