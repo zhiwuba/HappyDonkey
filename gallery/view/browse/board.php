@@ -13,7 +13,7 @@
                 <?php $i=0; foreach($board['data'] as $item ){?>
                     <div class="a_<?php echo $board['id']; ?>" >
                         <a href="<?php echo HTTP_SERVER ."index.php?route=browse/paint&pid=".$item['paint_id'];?>" namecard="<?php echo $item['paint_id'];?>">
-                            <div class="item_brief"><?php echo "$i. " . $item['header']; ?></div>
+                            <div class="item_brief"><?php echo "$i. " . comment_brief($item['comment'],17); ?></div>
                         </a>
                     </div>
                 <?php $i++; }?>

@@ -26,7 +26,7 @@ class ModelBrowseTop extends  Model
 
     public function get_hot_paint_by_mark($count)
     {
-        $result=$this->db->query("SELECT paint_id, header FROM hd_paints ORDER BY mark DESC LIMIT " . $count );
+        $result=$this->db->query("SELECT paint_id, comment FROM hd_paints ORDER BY mark DESC LIMIT " . $count );
         return $result;
     }
 
@@ -35,7 +35,7 @@ class ModelBrowseTop extends  Model
         $result=array();
         foreach( $paint_ids as $paint_id )
         {
-            $info=$this->db->query("SELECT paint_id,header FROM hd_paints WHERE paint_id=" . $paint_id );
+            $info=$this->db->query("SELECT paint_id,comment FROM hd_paints WHERE paint_id=" . $paint_id );
             $result[]=$info;
         }
         return $result;

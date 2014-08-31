@@ -16,7 +16,7 @@
                 <?php $i=0; foreach($popular as $item ){ ?>
                     <div class="a-popular">
                         <a href="<?php echo $item['url']; ?>"  namecard="<?php echo $item['paint_id']?>">
-                            <div class="item_brief"><?php echo $i . ". " . $item['header'] ?></div>
+                            <div class="item_brief"><?php echo $i . ". " . comment_brief($item['comment']); ?></div>
                         </a>
                     </div>
                 <?php $i++;} ?>
@@ -31,7 +31,7 @@
                 <?php $i=0; foreach($recommend as $item){ ?>
                     <div class="a_recommend">
                         <a href="<?php echo $item['url']; ?>" namecard="<?php echo $item['paint_id']; ?>">
-                            <div class="item_brief"><?php echo $i . ". " . $item['header']; ?></div>
+                            <div class="item_brief"><?php echo $i . ". " . comment_brief($item['comment']); ?></div>
                         </a>
                     </div>
                 <?php $i++; };?>
@@ -46,7 +46,7 @@
                 <?php $i=0 ;foreach($history as $item) {?>
                     <div class="a_history">
                         <a href="<?php echo $item['url'];?>" namecard="<?php echo $item['paint_id']?>">
-                            <div class="item_brief"><?php echo $i. " ." . $item['header']; ?></div>
+                            <div class="item_brief"><?php echo $i. " ." . comment_brief($item['comment']); ?></div>
                         </a>
                     </div>
                 <?php $i++;};?>

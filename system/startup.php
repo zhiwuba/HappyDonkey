@@ -22,5 +22,6 @@ require_once(DIR_System . "library/user.php");
 require_once(DIR_System . "library/document.php");
 require_once(DIR_System . "library/picture.php");
 require_once(DIR_System .  "library/url.php");
+require_once(DIR_System .  "library/utils.php");
 
 ?>
